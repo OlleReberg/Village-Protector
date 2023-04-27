@@ -6,23 +6,24 @@ using UnityEngine.Serialization;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Transform followPlayer;
-    [SerializeField] private float distance = 5;
-    [SerializeField] private float rotationSpeed = 2f;
-    [SerializeField] private float minVerticalAngle = -45;
-    [SerializeField] private float maxVerticalAngle = 45;
-    [SerializeField] private Vector2 framingOffset;
+    [SerializeField] private Transform followPlayer;   // Player to follow
+    [SerializeField] private float distance = 5;   // Distance of camera from player
+    [SerializeField] private float rotationSpeed = 2f;   // Speed of camera rotation
+    [SerializeField] private float minVerticalAngle = -45;   // Minimum vertical angle of camera
+    [SerializeField] private float maxVerticalAngle = 45;   // Maximum vertical angle of camera
+    [SerializeField] private Vector2 framingOffset;   // Offset for camera's focus position
 
-    [SerializeField] private bool invertX;
-    [SerializeField] private bool invertY;
+    [SerializeField] private bool invertX;   // Option to invert horizontal rotation
+    [SerializeField] private bool invertY;   // Option to invert vertical rotation
     
-    private float rotationY;
-    private float rotationX;
-    private float invertXVal;
-    private float invertYVal;
+    private float rotationY;   // Current horizontal rotation of camera
+    private float rotationX;   // Current vertical rotation of camera
+    private float invertXVal;   // Value to multiply horizontal rotation by to invert it
+    private float invertYVal;   // Value to multiply vertical rotation by to invert it
 
     private void Start()
     {
+        // Hide cursor and lock it to the center of the screen
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -49,5 +50,6 @@ public class CameraController : MonoBehaviour
         transform.rotation = targetRotation;
     }
 
+    // Get the camera's planar rotation (horizontal rotation)
     public Quaternion PlanarRotation => Quaternion.Euler(0, rotationY, 0);
 }

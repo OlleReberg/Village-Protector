@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerCombatController : MonoBehaviour
 {
+    private int currentHealth;
+    
     private Animator animator;
     [SerializeField] private float cdTime = 2f;
     private float nextFireTime = 0f;
@@ -62,4 +64,16 @@ public class PlayerCombatController : MonoBehaviour
             animator.SetBool("hit 2", true);
         }
     }   
+    
+    public void TakeDamage(int amount)
+    {
+        // Reduce the current health of the enemy by the amount of damage taken
+        currentHealth -= amount;
+
+        // If the current health of the enemy is less than or equal to 0, destroy the enemy object
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
