@@ -3,16 +3,19 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     // The stats of this enemy
-    private EnemyStats enemyStats;
+    [SerializeField] private EnemyStatsSO enemyStats;
+    
+    //get enemymovement script
+    private EnemyMovement enemyMovement;
 
     // The current health of the enemy
-    private int currentHealth;
+    public int currentHealth;
 
     // The time until the enemy can attack again
-    private float attackCooldown = 0;
+    private float attackCooldown = 0f;
 
     // The time until the enemy can use their unique ability again
-    private float abilityCooldown = 0;
+    private float abilityCooldown = 0f;
 
     // The player object that the enemy will be attacking
     private GameObject player;
@@ -22,11 +25,12 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        // Get the EnemyStats component attached to this game object
-        enemyStats = GetComponent<EnemyStats>();
-
         // Set the current health of the enemy to their maximum health
         currentHealth = enemyStats.MaxHealth;
+        
+        //Set cooldowns to enemystatSO
+        //attackCooldown = enemyStats.AttackSpeed;
+        abilityCooldown = enemyStats.AbilityCooldown;
     }
 
     private void Update()
@@ -80,13 +84,13 @@ public class Enemy : MonoBehaviour
 
             // Deal damage to the player
             player.GetComponent<PlayerCombatController>().TakeDamage(enemyStats.AttackDamage);
+            Debug.Log(this + "dealt " + enemyStats.AttackDamage);
         }
     }
 
     private void MoveTowardsPlayer()
     {
-        // Move towards the player
-        // ...
+        enemyMovement.MoveToTarget(player.transform.position);
     }
 
     public void SetPlayer(GameObject player)

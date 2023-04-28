@@ -1,10 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerCombatController : MonoBehaviour
 {
+    [SerializeField] private PlayerStatsSO playerStats;
+    public GameObject weapon;
+    
     private int currentHealth;
     
     private Animator animator;
@@ -76,4 +80,21 @@ public class PlayerCombatController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
+    public void DealDamage(GameObject target, int damage)
+    {
+        if (target == CompareTag("Enemy"))
+        {
+            damage = playerStats.AttackDamage;
+            Debug.Log("Player hit " + target + "for " + damage);
+            Enemy enemy;
+            // if (enemy.currentHealth != null)
+            // {
+            //     // Call the TakeDamage function on the target's health controller
+            //     enemy.TakeDamage(damage);
+            // }
+        }
+    }
+
+    
 }

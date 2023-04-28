@@ -5,14 +5,14 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     private AStarPathfinder pathfinder;
-    private EnemyStats enemyStats;
+    private EnemyStatsSO enemyStats;
     
     void Awake()
     {
         pathfinder = GetComponent<AStarPathfinder>();
     }
     
-    void MoveToTarget(Vector3 targetPosition)
+    public void MoveToTarget(Vector3 targetPosition)
     {
         List<Node> path = pathfinder.FindPath(transform.position, targetPosition);
 
