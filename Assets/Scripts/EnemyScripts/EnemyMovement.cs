@@ -28,7 +28,7 @@ public class EnemyMovement : MonoBehaviour
             while (transform.position != target)
             {
                 // Move towards the target node
-                transform.position = Vector3.MoveTowards(transform.position, target, enemyStats.MovementSpeed * Time.deltaTime);
+               // transform.position = Vector3.MoveTowards(transform.position, target, enemyStats.MovementSpeed * Time.deltaTime);
 
                 // If we've reached the current target node, update the target to the next node in the path
                 if (transform.position == target && currentNodeIndex < path.Count - 1)

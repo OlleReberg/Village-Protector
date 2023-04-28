@@ -4,11 +4,9 @@ using UnityEngine;
 public class EnemyStatsSO : ScriptableObject
 {
     [SerializeField] private int maxHealth;
-    [SerializeField] private float movementSpeed;
     [SerializeField] private float attackRange;
-    [SerializeField] private float visionRange;
     [SerializeField] private int attackDamage;
-    [SerializeField] private float attackSpeed;
+    [SerializeField] private int armor;
 
     [SerializeField] private float abilityCooldown;
     [SerializeField] private string standardAttackName;
@@ -19,11 +17,9 @@ public class EnemyStatsSO : ScriptableObject
     //[SerializeField] private GameObject uniqueAbilityPrefab;
 
     public int MaxHealth => maxHealth;
-    public float MovementSpeed => movementSpeed;
     public float AttackRange => attackRange;
-    public float VisionRange => visionRange;
     public int AttackDamage => attackDamage;
-    public float AttackSpeed => attackSpeed;
+    public int Armor => armor;
     public float AbilityCooldown => abilityCooldown;
    // public GameObject StandardAttackPrefab => standardAttackPrefab;
    // public GameObject UniqueAbilityPrefab => uniqueAbilityPrefab;

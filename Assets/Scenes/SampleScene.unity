@@ -1059,6 +1059,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OldGoblin
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 4a5be91c4db893f4bafccc40098178d7, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9fbff038299caca4d86ba1588bc8614e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a5be91c4db893f4bafccc40098178d7, type: 3}
 --- !u!1001 &596364855
@@ -3777,6 +3781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: f7cb5ea859305a749857c4205d1b91f2, type: 2}
+  animator: {fileID: 1689778135}
   currentHealth: 5
 --- !u!4 &1689778132
 Transform:
