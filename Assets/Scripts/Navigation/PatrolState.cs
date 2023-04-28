@@ -6,12 +6,15 @@ using UnityEngine.AI;
 public class PatrolState : StateMachineBehaviour
 {
     private float timer;
-
     private List<Transform> waypoints = new List<Transform>();
     private NavMeshAgent agent;
+    private Transform player;
+
+    [SerializeField] private float chaseRange = 10;
     
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = animator.GetComponent<NavMeshAgent>();
         timer = 0;
         GameObject go = GameObject.FindGameObjectWithTag("Waypoints");
@@ -23,12 +26,16 @@ public class PatrolState : StateMachineBehaviour
     
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        float distance = Vector3.Distance(player.position, animator.transform.position);
         if (agent.remainingDistance <= agent.stoppingDistance)
             agent.SetDestination(waypoints[Random.Range(0, waypoints.Count)].position);
         
         timer += Time.deltaTime;
         if (timer > 10)
             animator.SetBool("IsPatrolling", false);
+        
+        if (distance < chaseRange)
+            animator.SetBool("isChasing", true);
     }
     
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
