@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
         // If the player is grounded, set the vertical speed to -0.5f
         if (_isGrounded)
         {
-            ySpeed = -0.5f;
+            ySpeed = 0f;
         }
         else
         {
@@ -75,7 +75,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && _isGrounded)
         {
             Jump();
+            animator.SetBool("jumping", true);
             Debug.Log("Jumping");
+        }
+        else
+        {
+            animator.SetBool("jumping", false);
         }
     }
 
