@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement & Rotation")]
     [SerializeField] private float moveSpeed = 5;
     [SerializeField] private float rotationSpeed = 500f;
-    [SerializeField] private float jumpPower = 50f;
+    [SerializeField] private float jumpPower;
 
     [Header("Ground Check Settings")]
     [SerializeField] private float groundCheckRadius = 0.2f; // Radius of the sphere used to check for ground
@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
 
     private bool _isGrounded;
     private float ySpeed; // Vertical speed of the player
-    private Vector3 velocity;
 
     private Quaternion targetRotation; // The rotation that the player should be facing
     private Animator animator; // Animator component of the player
@@ -41,9 +40,8 @@ public class PlayerController : MonoBehaviour
         var v = Input.GetAxis("Vertical");
         // Calculate the move amount
         float moveAmount = Mathf.Clamp01(Mathf.Abs(h) + Mathf.Abs(v));
-        
         var moveDir = MovePlayer(h, v);
-
+        Vector3 velocity = moveDir * moveAmount;
         // Check for ground
         GroundCheck();
 
@@ -83,9 +81,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        // Apply an upward force to simulate jumping
-        GetComponent<Rigidbody>().AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
-        _isGrounded = false;
+        ySpeed = jumpPower;
     }
 
     private Vector3 MovePlayer(float h, float v)

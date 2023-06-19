@@ -13,7 +13,7 @@ public class TimeController : MonoBehaviour
     [SerializeField] private Color dayAmbientLight;
     [SerializeField] private Color nightAmbientLight;
     [SerializeField] private AnimationCurve lightChangeCurve;
-    [Header("Color Settings")]
+    [Header("Time Settings")]
     [SerializeField] private float sunriseHour;
     [SerializeField] private float sunsetHour;
     [SerializeField] private float timeMultiplier;
@@ -47,7 +47,6 @@ public class TimeController : MonoBehaviour
         currentTime = currentTime.AddSeconds(Time.deltaTime * timeMultiplier);
         
         timeText.text = currentTime.ToString("HH:mm");
-        
     }
 
     private void RotateSun()
@@ -69,8 +68,8 @@ public class TimeController : MonoBehaviour
             double percentage = timeSinceSunset.TotalMinutes / sunsetToSunriseDuration.TotalMinutes;
             sunLightRotation = Mathf.Lerp(180, 360, (float) percentage);
         }
-
         sunLight.transform.rotation = Quaternion.AngleAxis(sunLightRotation, Vector3.right);
+        
     }
 
     private TimeSpan CalculateTimeDifference(TimeSpan fromTime, TimeSpan toTime)
