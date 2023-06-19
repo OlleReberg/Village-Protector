@@ -7,12 +7,21 @@ using UnityEngine.Serialization;
 
 public class TimeController : MonoBehaviour
 {
+    [Header("Light Settings")]
+    [SerializeField] private Light sunLight;
+    [SerializeField] private Light moonLight;
+    [SerializeField] private Color dayAmbientLight;
+    [SerializeField] private Color nightAmbientLight;
+    [SerializeField] private AnimationCurve lightChangeCurve;
+    [Header("Color Settings")]
+    [SerializeField] private float sunriseHour;
+    [SerializeField] private float sunsetHour;
     [SerializeField] private float timeMultiplier;
     [SerializeField] private float startHour;
     [SerializeField] private TextMeshProUGUI timeText;
-    [SerializeField] private Light sunLight;
-    [SerializeField] private float sunriseHour;
-    [SerializeField] private float sunsetHour;
+    [SerializeField] private float maximumSunIntensity;
+    [SerializeField] private float maximumMoonIntensity;
+    
     
     private DateTime currentTime;
     private TimeSpan sunriseTime;
@@ -30,6 +39,7 @@ public class TimeController : MonoBehaviour
     {
         UpdateTOD();
         RotateSun();
+        UpdateLightingSettings();
     }
 
     private void UpdateTOD()
@@ -72,5 +82,13 @@ public class TimeController : MonoBehaviour
             difference += TimeSpan.FromHours(24);
         }
         return difference;
+    }
+    
+    private void UpdateLightingSettings()
+    {
+        float dotProduct = Vector3.Dot(sunLight.transform.forward, Vector3.down);
+        sunLight.intensity = Mathf.Lerp(0, maximumSunIntensity,lightChangeCurve.Evaluate(dotProduct));
+        moonLight.intensity = Mathf.Lerp(maximumMoonIntensity, 0, lightChangeCurve.Evaluate(dotProduct));
+        RenderSettings.ambientLight = Color.Lerp(nightAmbientLight, dayAmbientLight, lightChangeCurve.Evaluate(dotProduct));
     }
 }
