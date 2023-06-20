@@ -183,7 +183,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 21df164177fe628439d44b0b59734332, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1442,6 +1442,10 @@ PrefabInstance:
     - target: {fileID: 2048825306430132154, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
       propertyPath: groundCheckRadius
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2048825306430132154, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      propertyPath: groundCheckOffset.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2187098346172577061, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
       propertyPath: m_RootOrder
