@@ -90,8 +90,8 @@ public class PlayerController : MonoBehaviour
         // If the player is not grounded, apply gravity
         if (!isGrounded)
         {
-            ySpeed += Physics.gravity.y * Time.deltaTime;
             StartCoroutine(Falling());
+            ySpeed += Physics.gravity.y * Time.deltaTime;
         }
     }
 
@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Falling()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         animator.SetBool("isJumping", false);
         animator.SetBool("isFalling", true);
     }
