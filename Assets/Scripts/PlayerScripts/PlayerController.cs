@@ -45,16 +45,7 @@ public class PlayerController : MonoBehaviour
         // Check for ground
         GroundCheck();
 
-        // If the player is grounded, set the vertical speed to -0.5f
-        if (_isGrounded)
-        {
-            ySpeed = 0f;
-        }
-        else
-        {
-            // If the player is not grounded, apply gravity
-            ySpeed += Physics.gravity.y * Time.deltaTime;
-        }
+        Gravity();
 
         // Set the vertical velocity
         velocity.y = ySpeed;
@@ -80,13 +71,31 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            animator.SetBool("jumping", false);
+           animator.SetBool("jumping", false);
+        }
+        
+        // Move the player
+        characterController.Move(velocity * Time.deltaTime);
+    }
+
+    private void Gravity()
+    {
+        // If the player is grounded, set the vertical speed to 0f
+        if (_isGrounded)
+        {
+            ySpeed = 0f;
+        }
+        // If the player is not grounded, apply gravity
+        if (!_isGrounded)
+        {
+            ySpeed += Physics.gravity.y * Time.deltaTime;
         }
     }
 
     private void Jump()
     {
         ySpeed = jumpPower;
+       characterController.Move(Vector3.up * (jumpPower * Time.deltaTime));
     }
 
     private Vector3 MovePlayer(float h, float v)
