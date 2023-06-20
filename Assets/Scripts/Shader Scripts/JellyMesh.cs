@@ -10,7 +10,7 @@ public class JellyMesh : MonoBehaviour
     public float damping = 0.75f;
     [FormerlySerializedAs("intensity")] public float Intensity = 1f;
     private Mesh originalMesh, meshClone;
-    private MeshRenderer renderer;
+    private new MeshRenderer renderer;
     private JellyVertex[] jv;
     private Vector3[] vertexArray;
     void Start()

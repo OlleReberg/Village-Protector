@@ -1,22 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement & Rotation")]
-    [SerializeField] private float moveSpeed = 5; // Movement speed of the player
-    [SerializeField] private float rotationSpeed = 500f; // Rotation speed of the player
+    [SerializeField] private float moveSpeed = 5;
+    [SerializeField] private float rotationSpeed = 500f;
+    [SerializeField] private float jumpPower;
 
     [Header("Ground Check Settings")]
     [SerializeField] private float groundCheckRadius = 0.2f; // Radius of the sphere used to check for ground
     [SerializeField] private Vector3 groundCheckOffset; // Offset of the sphere used to check for ground
     [SerializeField] private LayerMask groundLayer; // Layermask for the ground objects
 
-    private bool _isGrounded; // Stores if the player is grounded
+    private bool isGrounded;
     private float ySpeed; // Vertical speed of the player
 
     private Quaternion targetRotation; // The rotation that the player should be facing
@@ -37,36 +38,17 @@ public class PlayerController : MonoBehaviour
         // Get input values
         var h = Input.GetAxis("Horizontal");
         var v = Input.GetAxis("Vertical");
-
         // Calculate the move amount
         float moveAmount = Mathf.Clamp01(Mathf.Abs(h) + Mathf.Abs(v));
-
-        // Calculate the move direction
-        var moveInput = new Vector3(h, 0, v).normalized;
-        var moveDir = cameraController.PlanarRotation * moveInput;
-
-        // Calculate the velocity
-        var velocity = moveDir * moveSpeed;
-
+        var moveDir = MovePlayer(h, v);
+        Vector3 velocity = moveDir * moveAmount;
         // Check for ground
         GroundCheck();
 
-        // If the player is grounded, set the vertical speed to -0.5f
-        if (_isGrounded)
-        {
-            ySpeed = -0.5f;
-        }
-        else
-        {
-            // If the player is not grounded, apply gravity
-            ySpeed += Physics.gravity.y * Time.deltaTime;
-        }
+        Gravity();
 
         // Set the vertical velocity
         velocity.y = ySpeed;
-
-        // Move the player
-        characterController.Move(velocity * Time.deltaTime);
 
         // If the player is moving, rotate the player to face the move direction
         if (moveAmount > 0)
@@ -80,12 +62,63 @@ public class PlayerController : MonoBehaviour
 
         // Set the move amount parameter of the animator
         animator.SetFloat("moveAmount", moveAmount, 0.2f, Time.deltaTime);
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            animator.SetBool("isJumping", true);
+            Jump();
+            Debug.Log("Jumping");
+        }
+        else
+        {
+           animator.SetBool("isJumping", false);
+        }
+        
+        // Move the player
+        characterController.Move(velocity * Time.deltaTime);
+    }
+
+    private void Gravity()
+    {
+        // If the player is grounded, set the vertical speed to 0f
+        if (isGrounded)
+        {
+            ySpeed = 0f;
+            animator.SetBool("isFalling", false);
+            animator.SetBool("isJumping", false);
+        }
+        // If the player is not grounded, apply gravity
+        if (!isGrounded)
+        {
+            StartCoroutine(Falling());
+            ySpeed += Physics.gravity.y * Time.deltaTime;
+        }
+    }
+
+    private void Jump()
+    {
+        ySpeed = jumpPower;
+       characterController.Move(Vector3.up * (jumpPower * Time.deltaTime));
+    }
+
+    private Vector3 MovePlayer(float h, float v)
+    {
+        // Calculate the move direction
+        var moveInput = new Vector3(h, 0, v).normalized;
+        var moveDir = cameraController.PlanarRotation * moveInput;
+
+        // Calculate the velocity
+        var velocity = moveDir * moveSpeed;
+
+        // Move the player
+        characterController.Move(velocity * Time.deltaTime);
+        return moveDir;
     }
 
     void GroundCheck()
     {
         // Check if the player is grounded
-        _isGrounded = Physics.CheckSphere(transform.TransformPoint(groundCheckOffset),
+        isGrounded = Physics.CheckSphere(transform.TransformPoint(groundCheckOffset),
             groundCheckRadius, groundLayer);
     }
 
@@ -94,5 +127,12 @@ public class PlayerController : MonoBehaviour
         // Draw a sphere to show the ground check area in the editor
         Gizmos.color = new Color(1, 0, 0, 0.5f);
         Gizmos.DrawSphere(transform.TransformPoint(groundCheckOffset), groundCheckRadius);
+    }
+
+    private IEnumerator Falling()
+    {
+        yield return new WaitForSeconds(0.1f);
+        animator.SetBool("isJumping", false);
+        animator.SetBool("isFalling", true);
     }
 }
