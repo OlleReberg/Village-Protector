@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fd1983f05887244b94b8482446ef4d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 6efbe522969668c428d706e2c68d239a, type: 3}
   m_Name: Goblin
   m_EditorClassIdentifier: 
-  maxHealth: 25
-  attackRange: 2
+  maxHealth: 10
+  attackRange: 5
   attackDamage: 5
   armor: 0
-  abilityCooldown: 5
-  standardAttackName: Hit
-  uniqueAbilityName: Toxic Spit
-  uniqueAbilityDamage: 8
+  abilityCooldown: 0
+  standardAttackName: Attack
+  uniqueAbilityName: Bleh
+  uniqueAbilityDamage: 5
