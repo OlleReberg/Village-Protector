@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 381243568}
   - component: {fileID: 381243567}
   - component: {fileID: 381243566}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1332,7 +1332,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2048825306430132154, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
       propertyPath: jumpPower
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2048825306430132154, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
       propertyPath: groundCheckRadius

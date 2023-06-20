@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector3 groundCheckOffset; // Offset of the sphere used to check for ground
     [SerializeField] private LayerMask groundLayer; // Layermask for the ground objects
 
-    private bool _isGrounded;
+    private bool isGrounded;
     private float ySpeed; // Vertical speed of the player
 
     private Quaternion targetRotation; // The rotation that the player should be facing
@@ -63,15 +63,15 @@ public class PlayerController : MonoBehaviour
         // Set the move amount parameter of the animator
         animator.SetFloat("moveAmount", moveAmount, 0.2f, Time.deltaTime);
 
-        if (Input.GetButtonDown("Jump") && _isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
+            animator.SetBool("isJumping", true);
             Jump();
-            animator.SetBool("jumping", true);
             Debug.Log("Jumping");
         }
         else
         {
-           animator.SetBool("jumping", false);
+           animator.SetBool("isJumping", false);
         }
         
         // Move the player
@@ -81,14 +81,17 @@ public class PlayerController : MonoBehaviour
     private void Gravity()
     {
         // If the player is grounded, set the vertical speed to 0f
-        if (_isGrounded)
+        if (isGrounded)
         {
             ySpeed = 0f;
+            animator.SetBool("isFalling", false);
+            animator.SetBool("isJumping", false);
         }
         // If the player is not grounded, apply gravity
-        if (!_isGrounded)
+        if (!isGrounded)
         {
             ySpeed += Physics.gravity.y * Time.deltaTime;
+            StartCoroutine(Falling());
         }
     }
 
@@ -115,7 +118,7 @@ public class PlayerController : MonoBehaviour
     void GroundCheck()
     {
         // Check if the player is grounded
-        _isGrounded = Physics.CheckSphere(transform.TransformPoint(groundCheckOffset),
+        isGrounded = Physics.CheckSphere(transform.TransformPoint(groundCheckOffset),
             groundCheckRadius, groundLayer);
     }
 
@@ -124,5 +127,12 @@ public class PlayerController : MonoBehaviour
         // Draw a sphere to show the ground check area in the editor
         Gizmos.color = new Color(1, 0, 0, 0.5f);
         Gizmos.DrawSphere(transform.TransformPoint(groundCheckOffset), groundCheckRadius);
+    }
+
+    private IEnumerator Falling()
+    {
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("isJumping", false);
+        animator.SetBool("isFalling", true);
     }
 }
