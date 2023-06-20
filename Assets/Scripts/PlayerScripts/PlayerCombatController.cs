@@ -12,7 +12,6 @@ public class PlayerCombatController : MonoBehaviour
     private int currentHealth;
 
     private Animator animator;
-    [SerializeField] private float cdTime = 2f; // Cooldown time for attacks
     private float nextFireTime = 0f; // Time of the next available attack
     [SerializeField] private static int noOfClicks = 0; // Number of clicks in a combo
     private float lastClickedTime = 0; // Time of the last click
@@ -89,7 +88,7 @@ public class PlayerCombatController : MonoBehaviour
         {
             damage = playerStats.AttackDamage;
             Debug.Log("Player hit " + target + "for " + damage);
-            Enemy enemy;
+            //Enemy enemy;
             // if (enemy.currentHealth != null)
             // {
             //     // Call the TakeDamage function on the target's health controller
