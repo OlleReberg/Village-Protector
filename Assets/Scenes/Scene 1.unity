@@ -1258,15 +1258,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b259ed6013255c14583e39581aaf23bf, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b259ed6013255c14583e39581aaf23bf, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b259ed6013255c14583e39581aaf23bf, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b259ed6013255c14583e39581aaf23bf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1343,9 +1343,10 @@ GameObject:
   - component: {fileID: 1804470571}
   - component: {fileID: 1804470570}
   - component: {fileID: 1804470573}
+  - component: {fileID: 1804470574}
   m_Layer: 0
   m_Name: Goblin
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1414,6 +1415,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ec525981582674db57eef27f32f374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1804470574
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804470569}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.4, z: 1}
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!1 &2036627453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,9 +1610,44 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7729236344215936392, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 6781694477580316558}
+    - target: {fileID: 7729236344215936392, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      propertyPath: attckCombo.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729236344215936392, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      propertyPath: attckCombo.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: f93447329ba9cbb4f93a9ec20db50eb4, type: 2}
+    - target: {fileID: 7729236344215936392, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      propertyPath: attckCombo.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5134d3e52fc8f824dae967c01982631c, type: 2}
+    - target: {fileID: 7729236344215936392, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      propertyPath: attckCombo.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: f93447329ba9cbb4f93a9ec20db50eb4, type: 2}
+    - target: {fileID: 7729236344215936392, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      propertyPath: attckCombo.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5af8799503335e041806fa110e19b248, type: 2}
     m_RemovedComponents:
     - {fileID: 293205329701904503, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+--- !u!114 &6781694477580316558 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1661396355483975880, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+  m_PrefabInstance: {fileID: 6781694477580316557}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8804aa50753a1f4cb6b94f897856df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

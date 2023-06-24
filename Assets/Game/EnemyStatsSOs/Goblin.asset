@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efbe522969668c428d706e2c68d239a, type: 3}
   m_Name: Goblin
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 15
   attackRange: 5
   attackDamage: 5
   armor: 0

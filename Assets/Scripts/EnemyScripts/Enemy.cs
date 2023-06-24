@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     private EnemyMovement enemyMovement;
 
     // The current health of the enemy
-    public int currentHealth;
+    public float currentHealth;
 
     // The time until the enemy can attack again
     private float attackCooldown = 0f;
@@ -37,35 +37,27 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         // Reduce the time until the next attack can be made
-        //attackCooldown = Mathf.Max(0, attackCooldown - Time.deltaTime);
+        attackCooldown = Mathf.Max(0, attackCooldown - Time.deltaTime);
 
         // Reduce the time until the unique ability can be used again
-        //abilityCooldown = Mathf.Max(0, abilityCooldown - Time.deltaTime);
+        abilityCooldown = Mathf.Max(0, abilityCooldown - Time.deltaTime);
+        
+        EnemyDeath();
     }
 
-    public void TakeDamage(int amount)
+    public void EnemyDeath()
     {
-        // Reduce the current health of the enemy by the amount of damage taken
-        currentHealth -= amount;
-
         // If the current health of the enemy is less than or equal to 0, destroy the enemy object
         if (currentHealth <= 0)
         {
             //Destroy(gameObject);
             animator.SetTrigger("death");
             GetComponent<Collider>().enabled = false;
+            Destroy(gameObject);
         }
-        else
-        {
-            animator.SetTrigger("damage");
-        }
-        
-    }
 
-    private void Attack()
-    {
-        //handled elsewhere at the moment
     }
+    
 
     private void MoveTowardsPlayer()
     {
