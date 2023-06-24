@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6efbe522969668c428d706e2c68d239a, type: 3}
-  m_Name: Goblin
+  m_Name: Dark Knight
   m_EditorClassIdentifier: 
-  maxHealth: 15
-  attackRange: 5
-  attackSpeed: 5
-  attackDamage: 5
-  armor: 1
-  abilityCooldown: 5
-  standardAttackName: Attack
-  uniqueAbilityName: Bleh
-  uniqueAbilityDamage: 5
+  maxHealth: 50
+  attackRange: 6
+  attackSpeed: 3
+  attackDamage: 10
+  armor: 5
+  abilityCooldown: 0
+  standardAttackName: Cleave
+  uniqueAbilityName: Damage Field
+  uniqueAbilityDamage: 20

@@ -30,8 +30,8 @@ public class Enemy : MonoBehaviour
         currentHealth = enemyStats.MaxHealth;
         
         //Set cooldowns to enemystatSO
-        //attackCooldown = enemyStats.AttackSpeed;
-      //  abilityCooldown = enemyStats.AbilityCooldown;
+        attackCooldown = enemyStats.AttackSpeed;
+        abilityCooldown = enemyStats.AbilityCooldown;
     }
 
     private void Update()

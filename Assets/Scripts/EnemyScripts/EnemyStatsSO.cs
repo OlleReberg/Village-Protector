@@ -5,6 +5,7 @@ public class EnemyStatsSO : ScriptableObject
 {
     [SerializeField] private int maxHealth;
     [SerializeField] private float attackRange;
+    [SerializeField] private float attackSpeed;
     [SerializeField] private int attackDamage;
     [SerializeField] private int armor;
 
@@ -18,6 +19,7 @@ public class EnemyStatsSO : ScriptableObject
 
     public int MaxHealth => maxHealth;
     public float AttackRange => attackRange;
+    public float AttackSpeed => attackSpeed;
     public int AttackDamage => attackDamage;
     public int Armor => armor;
     public float AbilityCooldown => abilityCooldown;
