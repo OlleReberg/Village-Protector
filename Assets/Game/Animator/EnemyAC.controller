@@ -306,7 +306,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PatrolState
-  m_Speed: 0.2
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -5367396368936035270}
@@ -321,7 +321,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: b755be42ebbaf5643bbb69bf73d46e9b, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: 20fddb7e7b3a2c446aa47a67346d40e3, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
