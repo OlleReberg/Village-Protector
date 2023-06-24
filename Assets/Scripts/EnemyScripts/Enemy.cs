@@ -50,7 +50,6 @@ public class Enemy : MonoBehaviour
         // If the current health of the enemy is less than or equal to 0, destroy the enemy object
         if (currentHealth <= 0)
         {
-            //Destroy(gameObject);
             animator.SetTrigger("death");
             GetComponent<Collider>().enabled = false;
             Destroy(gameObject);
