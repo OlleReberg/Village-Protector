@@ -14,7 +14,7 @@ public class EnemyStatsSO : ScriptableObject
     [SerializeField] private string uniqueAbilityName;
     [SerializeField] private float uniqueAbilityDamage;
     
-   // [SerializeField] private GameObject standardAttackPrefab;
+    [SerializeField] private AnimatorOverrideController animatorOV;
     //[SerializeField] private GameObject uniqueAbilityPrefab;
 
     public int MaxHealth => maxHealth;

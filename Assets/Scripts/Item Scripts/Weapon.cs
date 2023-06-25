@@ -24,6 +24,7 @@ public class Weapon : MonoBehaviour
         {
             enemy.currentHealth -= damage; // Reduce the enemy's current health by the weapon's damage value
             enemy.animator.SetTrigger("damage"); // Trigger the "damage" animation on the enemy's animator component
+            Debug.Log(other);
             Debug.Log("Dealing " + weaponDamage + " damage to the enemy"); // Log the damage dealt to the enemy
         }
     }
