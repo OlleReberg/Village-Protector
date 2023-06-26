@@ -29,10 +29,16 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _DETAIL_MAP
+  - _DETAIL_MAP
+  - _DISABLE_SSR_TRANSPARENT
   - _DISABLE_SSR_TRANSPARENT
   - _EMISSIVE_COLOR_MAP
+  - _EMISSIVE_COLOR_MAP
+  - _MASKMAP
   - _MASKMAP
   - _NORMALMAP
+  - _NORMALMAP
+  - _NORMALMAP_TANGENT_SPACE
   - _NORMALMAP_TANGENT_SPACE
   m_InvalidKeywords: []
   m_LightmapFlags: 2
