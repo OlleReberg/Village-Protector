@@ -45,7 +45,7 @@ public class HDRPDayCycle : MonoBehaviour
         sun.transform.rotation = Quaternion.Euler(sunRotation, -150f, 0);
         moon.transform.rotation = Quaternion.Euler(moonRotation, -150f, 0);
 
-        sky.spaceEmissionMultiplier.value = starsCurve.Evaluate(alpha) * 100;
+       sky.spaceEmissionMultiplier.value = starsCurve.Evaluate(alpha) * 10;
         
         CheckNightDayTransition();
     }

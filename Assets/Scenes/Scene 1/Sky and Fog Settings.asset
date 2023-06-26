@@ -133,7 +133,7 @@ MonoBehaviour:
     m_Value: 0
   type:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 0
   sphericalMode:
     m_OverrideState: 0
     m_Value: 1
@@ -192,10 +192,10 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: {x: 0, y: 0, z: 0}
   spaceEmissionTexture:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {fileID: 8900000, guid: 1262701c0c9fd1047a7c366a7c4d30da, type: 3}
   spaceEmissionMultiplier:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 50
   spaceRotation:
     m_OverrideState: 0
@@ -262,7 +262,7 @@ MonoBehaviour:
     m_Value: 1
   windOrientation:
     m_OverrideState: 1
-    m_Value: 60
+    m_Value: 40
   windSpeed:
     m_OverrideState: 1
     m_Value: 0
