@@ -73,6 +73,7 @@ public class HDRPDayCycle : MonoBehaviour
         isNight = false;
         sun.shadows = LightShadows.Soft;
         moon.shadows = LightShadows.None;
+        sky.exposure.value = 15;
     }
 
     void StartNight()
@@ -80,5 +81,6 @@ public class HDRPDayCycle : MonoBehaviour
         isNight = true;
         sun.shadows = LightShadows.None;
         moon.shadows = LightShadows.Soft;
+        sky.exposure.value = 1;
     }
 }
