@@ -5574,8 +5574,7 @@ MonoBehaviour:
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
   title: 
-  m_Owners:
-  - {fileID: 0}
+  m_Owners: []
   dataType: 0
   capacity: 32
   stripCapacity: 1
@@ -5602,8 +5601,7 @@ MonoBehaviour:
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
   title: 
-  m_Owners:
-  - {fileID: 0}
+  m_Owners: []
 --- !u!114 &8926484042661615594
 MonoBehaviour:
   m_ObjectHideFlags: 0
