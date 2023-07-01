@@ -46,6 +46,7 @@ public class HDRPDayCycle : MonoBehaviour
         moon.transform.rotation = Quaternion.Euler(moonRotation, -150f, 0);
 
        sky.spaceEmissionMultiplier.value = starsCurve.Evaluate(alpha) * 10;
+       sky.exposure.value = starsCurve.Evaluate(alpha) * 10;
         
         CheckNightDayTransition();
     }
@@ -73,7 +74,6 @@ public class HDRPDayCycle : MonoBehaviour
         isNight = false;
         sun.shadows = LightShadows.Soft;
         moon.shadows = LightShadows.None;
-        sky.exposure.value = 15;
     }
 
     void StartNight()
@@ -81,6 +81,5 @@ public class HDRPDayCycle : MonoBehaviour
         isNight = true;
         sun.shadows = LightShadows.None;
         moon.shadows = LightShadows.Soft;
-        sky.exposure.value = 1;
     }
 }
