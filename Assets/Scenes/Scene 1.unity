@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 24342.186, g: 24194.607, b: 25082.66, a: 1}
+  m_IndirectSpecularColor: {r: 0.032546077, g: 0.0343771, b: 0.04824663, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -370,7 +370,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: ca5b5dcbb6ce72f4097877c022a60b92, type: 2}
+  sharedProfile: {fileID: 11400000, guid: ba52f88d262c53f48bc2329212ea17f3, type: 2}
 --- !u!4 &332685384
 Transform:
   m_ObjectHideFlags: 0
@@ -621,7 +621,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -672,7 +672,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 524624075}
-  m_LocalRotation: {x: -0.23212777, y: -0.42721805, z: -0.86631256, w: 0.11447274}
+  m_LocalRotation: {x: 0.05712074, y: -0.94210833, z: 0.21317747, w: 0.2524372}
   m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2385,7 +2385,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -2436,7 +2436,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1336679934}
-  m_LocalRotation: {x: 0.11447276, y: -0.86631256, z: 0.4272181, w: 0.23212777}
+  m_LocalRotation: {x: 0.2524372, y: 0.21317744, z: 0.94210833, w: -0.057120733}
   m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2990,7 +2990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172e43281ca26654a99463911db12820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tOD: 9.5
+  tOD: 19.7
   orbitSpeed: 0.4
   sun: {fileID: 1336679936}
   moon: {fileID: 524624077}
