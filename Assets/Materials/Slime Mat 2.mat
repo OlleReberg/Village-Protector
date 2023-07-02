@@ -50,9 +50,8 @@ Material:
   disabledShaderPasses:
   - MOTIONVECTORS
   - RayTracingPrepass
-  - TransparentBackface
-  - TransparentDepthPostpass
   - TransparentDepthPrepass
+  - TransparentDepthPostpass
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -208,7 +207,7 @@ Material:
     - _BumpScale: 1
     - _CoatMask: 0
     - _CullMode: 0
-    - _CullModeForward: 0
+    - _CullModeForward: 2
     - _Cutoff: 0.5
     - _Damping: 0.5
     - _DepthOffsetEnable: 0
@@ -223,7 +222,7 @@ Material:
     - _DisplacementMode: 0
     - _DoubleSidedEnable: 1
     - _DoubleSidedGIMode: 0
-    - _DoubleSidedNormalMode: 1
+    - _DoubleSidedNormalMode: 0
     - _DstBlend: 10
     - _EmissiveColorMode: 1
     - _EmissiveExposureWeight: 1
@@ -299,7 +298,7 @@ Material:
     - _Thickness: 1
     - _TransmissionEnable: 1
     - _TransmissionMask: 1
-    - _TransparentBackfaceEnable: 0
+    - _TransparentBackfaceEnable: 1
     - _TransparentCullMode: 2
     - _TransparentDepthPostpassEnable: 0
     - _TransparentDepthPrepassEnable: 0
@@ -321,7 +320,7 @@ Material:
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0.9339623, g: 0.9339623, b: 0.9339623, a: 1}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
-    - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
+    - _DoubleSidedConstants: {r: -1, g: -1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissiveColor: {r: 0.119866766, g: 0.764151, b: 0, a: 1}
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
