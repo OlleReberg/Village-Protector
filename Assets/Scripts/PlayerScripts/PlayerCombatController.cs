@@ -6,94 +6,63 @@ using UnityEngine;
 
 public class PlayerCombatController : MonoBehaviour
 {
-    [SerializeField] private PlayerStatsSO playerStats;
-    public GameObject weapon;
+    private Animator animator; // Reference to the Animator component attached to the player
+    [SerializeField] private Weapon weapon; // Reference to the Weapon component attached to the player
+    public List<AttackSO> attckCombo; // List of AttackSO (ScriptableObject) containing attack combos
+    private float lastClickedTime; // Time of the last click
+    private float lastComboEnd; // Time when the last combo ended
+    private int comboCounter; // Counter for tracking the current combo index
 
-    private int currentHealth;
-
-    private Animator animator;
-    private float nextFireTime = 0f; // Time of the next available attack
-    [SerializeField] private static int noOfClicks = 0; // Number of clicks in a combo
-    private float lastClickedTime = 0; // Time of the last click
-    private float maxComboDelay = 1; // Maximum delay between clicks to maintain combo
-
-    void Start()
+    private void Start()
     {
-        animator = GetComponent<Animator>(); // Get the Animator component attached to the same GameObject
+        animator = GetComponent<Animator>(); // Assign the Animator component to the animator variable
     }
 
     private void Update()
     {
-        // Check if the current attack animation has reached a certain point and reset the corresponding trigger
-        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f
-            && animator.GetCurrentAnimatorStateInfo(0).IsName("hit 1"))
+        if (Input.GetButtonDown("Fire1"))
         {
-            animator.SetBool("hit 1", false);
+            Attack(); // Perform an attack when the "Fire1" button is pressed
         }
-        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f
-            && animator.GetCurrentAnimatorStateInfo(0).IsName("hit 2"))
-        {
-            animator.SetBool("hit 2", false);
-        }
+        ExitAttack(); // Check if the attack animation has finished and exit the attack state
+    }
 
-        // Reset the combo if the time between clicks exceeds the maximum combo delay
-        if (Time.time - lastClickedTime > maxComboDelay)
+    void Attack()
+    {
+        if (Time.time - lastComboEnd > 0.5f && comboCounter < attckCombo.Count)
         {
-            noOfClicks = 0;
-        }
+            CancelInvoke("EndCombo"); // Cancel the previous Invoke to end the combo
 
-        // Check if it's time for the next attack and the player has clicked the mouse button
-        if (Time.time > nextFireTime && Input.GetMouseButtonDown(0))
-        {
-            OnClick(); // Perform the attack
+            if (Time.time - lastClickedTime >= 0.3f)
+            {
+                // Set the animator's runtime controller to the current combo's animator override
+                animator.runtimeAnimatorController = attckCombo[comboCounter].animatorOV;
+                animator.Play("Attack", 0, 0); // Play the "Attack" animation from the beginning
+                weapon.damage = attckCombo[comboCounter].damage; // Set the weapon's damage to the damage value of the current combo
+                comboCounter++; // Increment the combo counter
+                lastClickedTime = Time.time; // Update the last clicked time
+
+                if (comboCounter >= attckCombo.Count)
+                {
+                    comboCounter = 0; // Reset the combo counter if it exceeds the number of available combos
+                }
+            }
         }
     }
 
-    void OnClick()
+    void ExitAttack()
     {
-        lastClickedTime = Time.time; // Record the time of the click
-        noOfClicks++; // Increase the number of clicks in the combo
-
-        if (noOfClicks == 1)
+        // Invoke the EndCombo method after 1 second if the attack animation is almost complete and tagged as "Attack"
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f 
+            && animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
         {
-            animator.SetBool("hit 1", true); // Trigger the first hit animation
-        }
-
-        Mathf.Clamp(noOfClicks, 0, 3); // Limit the number of clicks to a maximum of 3
-
-        // Trigger the second hit animation if the combo conditions are met
-        if (noOfClicks >= 2 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7
-                            && animator.GetCurrentAnimatorStateInfo(0).IsName("hit 1"))
-        {
-            animator.SetBool("hit 1", false);
-            animator.SetBool("hit 2", true);
+            Invoke("EndCombo", 1);
         }
     }
 
-    public void TakeDamage(int amount)
+    void EndCombo()
     {
-        // Reduce the current health of the enemy by the amount of damage taken
-        currentHealth -= amount;
-
-        // If the current health of the enemy is less than or equal to 0, destroy the enemy object
-        if (currentHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    public void DealDamage(GameObject target, int damage)
-    {
-        if (target == CompareTag("Enemy")) // Check if the target object has the tag "Enemy"
-        {
-            damage = playerStats.AttackDamage;
-            Debug.Log("Player hit " + target + "for " + damage);
-            //Enemy enemy;
-            // if (enemy.currentHealth != null)
-            // {
-            //     // Call the TakeDamage function on the target's health controller
-            //     enemy.TakeDamage(damage);
-            // }
-        }
+        comboCounter = 0; // Reset the combo counter to start a new combo
+        lastComboEnd = Time.time; // Update the last combo end time
     }
 }

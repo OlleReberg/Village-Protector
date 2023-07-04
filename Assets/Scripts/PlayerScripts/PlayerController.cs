@@ -8,16 +8,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement & Rotation")]
-    [SerializeField] private float moveSpeed = 5;
-    [SerializeField] private float rotationSpeed = 500f;
-    [SerializeField] private float jumpPower;
+    [SerializeField] private float moveSpeed = 5; // Speed at which the player moves
+    [SerializeField] private float rotationSpeed = 500f; // Speed at which the player rotates
+    [SerializeField] private float jumpPower; // Power of the player's jump
 
     [Header("Ground Check Settings")]
     [SerializeField] private float groundCheckRadius = 0.2f; // Radius of the sphere used to check for ground
     [SerializeField] private Vector3 groundCheckOffset; // Offset of the sphere used to check for ground
     [SerializeField] private LayerMask groundLayer; // Layermask for the ground objects
 
-    private bool isGrounded;
+    private bool isGrounded; // Flag indicating if the player is grounded
     private float ySpeed; // Vertical speed of the player
 
     private Quaternion targetRotation; // The rotation that the player should be facing
@@ -65,14 +65,15 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            animator.SetBool("isJumping", true);
-            Jump();
-            Debug.Log("Jumping");
+            animator.SetBool("isJumping", true); // Set the "isJumping" parameter in the animator to true
+            Jump(); // Call the Jump() method to perform the jump
+            Debug.Log("Jumping"); // Output a debug message indicating that the player is jumping
         }
         else
         {
-           animator.SetBool("isJumping", false);
+            animator.SetBool("isJumping", false); // Set the "isJumping" parameter in the animator to false
         }
+
         
         // Move the player
         characterController.Move(velocity * Time.deltaTime);
@@ -97,8 +98,10 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        ySpeed = jumpPower;
-       characterController.Move(Vector3.up * (jumpPower * Time.deltaTime));
+        // Set the vertical speed to the jump power
+        ySpeed = jumpPower; 
+        // Move the player upwards based on the jump power and time
+        characterController.Move(Vector3.up * (jumpPower * Time.deltaTime)); 
     }
 
     private Vector3 MovePlayer(float h, float v)
@@ -131,8 +134,10 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Falling()
     {
+        //Turn on falling animation if player is falling down and turning off jumping animation if it's being played
         yield return new WaitForSeconds(0.1f);
         animator.SetBool("isJumping", false);
         animator.SetBool("isFalling", true);
     }
 }
+

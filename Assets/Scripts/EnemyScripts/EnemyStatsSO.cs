@@ -5,6 +5,7 @@ public class EnemyStatsSO : ScriptableObject
 {
     [SerializeField] private int maxHealth;
     [SerializeField] private float attackRange;
+    [SerializeField] private float attackSpeed;
     [SerializeField] private int attackDamage;
     [SerializeField] private int armor;
 
@@ -13,11 +14,12 @@ public class EnemyStatsSO : ScriptableObject
     [SerializeField] private string uniqueAbilityName;
     [SerializeField] private float uniqueAbilityDamage;
     
-   // [SerializeField] private GameObject standardAttackPrefab;
+    [SerializeField] private AnimatorOverrideController animatorOV;
     //[SerializeField] private GameObject uniqueAbilityPrefab;
 
     public int MaxHealth => maxHealth;
     public float AttackRange => attackRange;
+    public float AttackSpeed => attackSpeed;
     public int AttackDamage => attackDamage;
     public int Armor => armor;
     public float AbilityCooldown => abilityCooldown;
