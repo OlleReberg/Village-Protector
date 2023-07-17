@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class ChaseState : StateMachineBehaviour
 {
     private NavMeshAgent agent;
+    private Navigation nav;
     private Transform player;
 
     [SerializeField] private float chaseRange = 17;
