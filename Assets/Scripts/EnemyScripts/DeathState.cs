@@ -22,7 +22,7 @@ public class DeathState : StateMachineBehaviour
     {
         float animTime = animator.GetCurrentAnimatorStateInfo(0).length;
         animator.SetBool("isDead", true);
-        Destroy(animator.gameObject, animTime + delay);
+        Destroy(animator.gameObject, animTime);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
