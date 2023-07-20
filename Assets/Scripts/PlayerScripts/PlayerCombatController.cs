@@ -12,6 +12,7 @@ public class PlayerCombatController : MonoBehaviour
     private float lastClickedTime; // Time of the last click
     private float lastComboEnd; // Time when the last combo ended
     private int comboCounter; // Counter for tracking the current combo index
+    public float delay = 1f;
 
     private void Start()
     {
@@ -23,12 +24,19 @@ public class PlayerCombatController : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Attack(); // Perform an attack when the "Fire1" button is pressed
+            Invoke("StartDisablingWeapon", delay);
         }
         ExitAttack(); // Check if the attack animation has finished and exit the attack state
     }
 
+    void StartDisablingWeapon()
+    {
+        weapon.DisableDamageCollider();
+    }
+
     void Attack()
     {
+        weapon.EnableDamageCollider();
         if (Time.time - lastComboEnd > 0.5f && comboCounter < attckCombo.Count)
         {
             CancelInvoke("EndCombo"); // Cancel the previous Invoke to end the combo
