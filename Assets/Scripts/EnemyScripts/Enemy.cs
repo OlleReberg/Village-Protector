@@ -47,12 +47,12 @@ public class Enemy : MonoBehaviour
 
     public void EnemyDeath()
     {
+       currentHealth = Mathf.Clamp(currentHealth, 0, enemyStats.MaxHealth);
         // If the current health of the enemy is less than or equal to 0, destroy the enemy object
         if (currentHealth <= 0)
         {
             animator.SetTrigger("death");
             GetComponent<Collider>().enabled = false;
-            Destroy(gameObject);
         }
 
     }
