@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 5.2094703, g: 4.6468987, b: 3.4446454, a: 1}
+  m_IndirectSpecularColor: {r: 5.2038655, g: 4.6426606, b: 3.4429936, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -504,7 +504,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6183203691309949459, guid: 56f7a21ef89c4b74486f4d3a334b5423, type: 3}
   m_PrefabInstance: {fileID: 88395460}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &88395463 stripped
+--- !u!114 &88395464 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2021629371411727229, guid: 56f7a21ef89c4b74486f4d3a334b5423, type: 3}
   m_PrefabInstance: {fileID: 88395460}
@@ -1488,6 +1488,120 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 467155825}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &472261418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 472261421}
+  - component: {fileID: 472261420}
+  - component: {fileID: 472261419}
+  m_Layer: 0
+  m_Name: LightningBlue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!73398921 &472261419
+VFXRenderer:
+  serializedVersion: 1
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472261418}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!2083052967 &472261420
+VisualEffect:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472261418}
+  m_Enabled: 1
+  m_Asset: {fileID: 8926484042661614526, guid: 8168d69f731aef84884a5c16c2f8121e, type: 3}
+  m_InitialEventName: OnPlay
+  m_InitialEventNameOverriden: 0
+  m_StartSeed: 0
+  m_ResetSeedOnPlay: 1
+  m_AllowInstancing: 1
+  m_ResourceVersion: 1
+  m_PropertySheet:
+    m_Float:
+      m_Array: []
+    m_Vector2f:
+      m_Array: []
+    m_Vector3f:
+      m_Array: []
+    m_Vector4f:
+      m_Array:
+      - m_Value: {x: 2.1442485, y: 5.144142, z: 6.7139587, w: 0}
+        m_Name: Lightning Color
+        m_Overridden: 1
+    m_Uint:
+      m_Array: []
+    m_Int:
+      m_Array: []
+    m_Matrix4x4f:
+      m_Array: []
+    m_AnimationCurve:
+      m_Array: []
+    m_Gradient:
+      m_Array: []
+    m_NamedObject:
+      m_Array: []
+    m_Bool:
+      m_Array: []
+--- !u!4 &472261421
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472261418}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -0.32, y: 1.38, z: 0.17398071}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1223525756}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1001 &473971399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4080,7 +4194,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightWeapon: {fileID: 11400000, guid: 27090329619fe824faa2cedcc6723e01, type: 2}
-  leftWeapon: {fileID: 11400000, guid: 27090329619fe824faa2cedcc6723e01, type: 2}
+  leftWeapon: {fileID: 11400000, guid: 33ec24b3bdd12ab49b093f44cc3d883f, type: 2}
+--- !u!114 &1223525767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814827370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87d0a08a15795bb4298f7c81398859db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1254862861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4089,6 +4215,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1687636036014117584, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.39732188
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687636036014117584, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5751478
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687636036014117584, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.40636995
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687636036014117584, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.58839077
+      objectReference: {fileID: 0}
     - target: {fileID: 2048825306430132154, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
       propertyPath: jumpPower
       value: 10
@@ -4149,6 +4291,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3581802189921550914, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.012120816
+      objectReference: {fileID: 0}
+    - target: {fileID: 3581802189921550914, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.04909066
+      objectReference: {fileID: 0}
+    - target: {fileID: 7656318038310386348, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 61057cd0f06093d45b1de273b3b394ec, type: 2}
     - target: {fileID: 7729236344215936392, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
       propertyPath: delay
       value: 1
@@ -4156,7 +4310,15 @@ PrefabInstance:
     - target: {fileID: 7729236344215936392, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
       propertyPath: weapon
       value: 
-      objectReference: {fileID: 88395463}
+      objectReference: {fileID: 88395464}
+    - target: {fileID: 7729236344215936392, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      propertyPath: lightning
+      value: 
+      objectReference: {fileID: 472261420}
+    - target: {fileID: 7729236344215936392, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      propertyPath: weaponhandler
+      value: 
+      objectReference: {fileID: 1950244843}
     - target: {fileID: 7729236344215936392, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
       propertyPath: attckCombo.Array.size
       value: 4
@@ -4182,6 +4344,9 @@ PrefabInstance:
     - {fileID: 8259009250117867119, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
     - {fileID: 7593120875682983818, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2187098346172577061, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 472261421}
     - targetCorrespondingSourceObject: {fileID: 3990518109701323920, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1312914941}
@@ -4192,6 +4357,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3270389875402334506, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
       insertIndex: 2
       addedObject: {fileID: 1223525761}
+    - targetCorrespondingSourceObject: {fileID: 3270389875402334506, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1223525767}
     - targetCorrespondingSourceObject: {fileID: 4029394319724673644, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1950244843}

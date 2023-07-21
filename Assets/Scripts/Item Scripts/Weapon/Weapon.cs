@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public float damage; // The damage value of the weapon
     private BoxCollider damageCollider; // The BoxCollider component attached to the weapon
     [SerializeField] private WeaponstatsSO weaponStats; // Reference to a ScriptableObject that contains weapon stats
     
@@ -35,20 +34,10 @@ public class Weapon : MonoBehaviour
         var weaponDamage = weaponStats.Damage; // Calculate the total damage of the weapon
         if (enemy != null)
         {
-            enemy.currentHealth -= damage; // Reduce the enemy's current health by the weapon's damage value
+            enemy.currentHealth -= weaponDamage; // Reduce the enemy's current health by the weapon's damage value
             enemy.animator.SetTrigger("damage"); // Trigger the "damage" animation on the enemy's animator component
             Debug.Log(collision);
             Debug.Log("Dealing " + weaponDamage + " damage to the enemy"); // Log the damage dealt to the enemy
         }
-    }
-
-    public void EnableTriggerBox()
-    {
-        damageCollider.enabled = true; // Enable the triggerBox (BoxCollider)
-    }
-
-    public void DisableTriggerBox()
-    {
-        damageCollider.enabled = false; // Disable the triggerBox (BoxCollider)
     }
 }
