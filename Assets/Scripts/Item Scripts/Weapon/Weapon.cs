@@ -21,7 +21,6 @@ public class Weapon : MonoBehaviour
     public void EnableDamageCollider()
     {
         damageCollider.enabled = true;
-        Debug.Log(damageCollider + "collider should be enabled");
     }
 
     public void DisableDamageCollider()
