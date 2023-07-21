@@ -35,6 +35,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        HandleMovement();
+    }
+
+    private void HandleMovement()
+    {
         // Get input values
         var h = Input.GetAxis("Horizontal");
         var v = Input.GetAxis("Vertical");
@@ -57,7 +62,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Rotate the player towards the target rotation
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, 
+        transform.rotation = Quaternion.RotateTowards(transform.rotation,
             targetRotation, rotationSpeed * Time.deltaTime);
 
         // Set the move amount parameter of the animator
@@ -74,7 +79,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isJumping", false); // Set the "isJumping" parameter in the animator to false
         }
 
-        
+
         // Move the player
         characterController.Move(velocity * Time.deltaTime);
     }
