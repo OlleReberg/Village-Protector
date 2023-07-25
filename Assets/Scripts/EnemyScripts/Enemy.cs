@@ -59,6 +59,7 @@ public class Enemy : MonoBehaviour
 
     private void DestroyEnemy()
     {
+        //Disabling enemy collider to prevent further hits upon death, then destroying the enemy gameobject
         GetComponent<Collider>().enabled = false;
         Destroy(gameObject);
     }
@@ -66,6 +67,7 @@ public class Enemy : MonoBehaviour
 
     private void MoveTowardsPlayer()
     {
+        //move towards player transform
         enemyMovement.MoveToTarget(player.transform.position);
     }
 
