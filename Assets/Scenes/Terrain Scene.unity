@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 21.70514, g: 18.926107, b: 15.612589, a: 1}
+  m_IndirectSpecularColor: {r: 21.708025, g: 18.929289, b: 15.614367, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4394,6 +4394,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1101716896}
+  - component: {fileID: 1101716897}
   m_Layer: 5
   m_Name: Inventory Content
   m_TagString: Untagged
@@ -4421,6 +4422,30 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1101716897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101716895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 100, y: 100}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1001 &1154483930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4599,9 +4624,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInventory:
   - {fileID: 11400000, guid: 8b60e3f6d97eeb94f9d17ea79ef852fd, type: 2}
-  - {fileID: 11400000, guid: 8b60e3f6d97eeb94f9d17ea79ef852fd, type: 2}
-  - {fileID: 11400000, guid: 27090329619fe824faa2cedcc6723e01, type: 2}
-  - {fileID: 11400000, guid: 33ec24b3bdd12ab49b093f44cc3d883f, type: 2}
   inventoryPanel: {fileID: 1101716895}
   inventorySlotPrefab: {fileID: 2004696671069944727, guid: fbced9ac1df46074e92a412d0b726a43, type: 3}
   rightWeapon: {fileID: 11400000, guid: 27090329619fe824faa2cedcc6723e01, type: 2}

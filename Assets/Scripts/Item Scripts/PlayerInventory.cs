@@ -17,6 +17,7 @@ public class PlayerInventory : MonoBehaviour
     private void Awake()
     {
         weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
+        UpdateUI();
     }
 
     private void Start()
@@ -24,7 +25,12 @@ public class PlayerInventory : MonoBehaviour
         weaponSlotManager.LoadWeaponOnSlot(rightWeapon, false);
         weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true);
     }
-    
+
+    private void Update()
+    {
+        //UpdateUI();
+    }
+
     public void AddItemToInventory(ItemSO item)
     {
         playerInventory.Add(item); // Notify observers (other systems) that an item has been added.
