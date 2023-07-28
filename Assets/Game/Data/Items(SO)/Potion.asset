@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Potion
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 6fddce8d35477b544ac3abd1d7598f26, type: 3}
-  quantity: 0
+  quantity: 3
   itemName: Potion
   itemDescription: Heals player, probably
