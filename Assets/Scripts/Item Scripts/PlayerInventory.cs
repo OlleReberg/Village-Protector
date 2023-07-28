@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Item_Scripts;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -93,7 +94,24 @@ public class PlayerInventory : MonoBehaviour
             // Set the item icon and quantity in the newSlot UI using 'item'
             slotUI.itemIconImage.sprite = item.ItemIcon;
             slotUI.quantityText.text = "x" + item.Quantity.ToString();
+            
+            // Adjust image aspect ratio to fit within the UISlot
+            AdjustImageAspect(slotUI.itemIconImage);
         }
+    }
+    private void AdjustImageAspect(Image image)
+    {
+        // Get the Image's RectTransform
+        RectTransform imageRectTransform = image.GetComponent<RectTransform>();
+
+        // Get the aspect ratio of the sprite
+        float aspectRatio = (float)image.sprite.texture.width / image.sprite.texture.height;
+
+        // Match the Image's width and height to the UISlot's dimensions
+        imageRectTransform.sizeDelta = new Vector2(imageRectTransform.sizeDelta.y * aspectRatio, imageRectTransform.sizeDelta.y);
+
+        // Set preserveAspect to true programmatically
+        image.preserveAspect = true;
     }
 
 }

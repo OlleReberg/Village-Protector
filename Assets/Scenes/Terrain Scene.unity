@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 21.70904, g: 18.930075, b: 15.61487, a: 1}
+  m_IndirectSpecularColor: {r: 21.704746, g: 18.926466, b: 15.612185, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4419,8 +4419,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 2.75, y: -2}
+  m_SizeDelta: {x: 709.5, y: 398}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1101716897
 MonoBehaviour:
@@ -4443,9 +4443,9 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 1
   m_CellSize: {x: 65, y: 65}
-  m_Spacing: {x: 10, y: 10}
+  m_Spacing: {x: 50, y: 50}
   m_Constraint: 1
-  m_ConstraintCount: 4
+  m_ConstraintCount: 8
 --- !u!1001 &1154483930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4625,6 +4625,10 @@ MonoBehaviour:
   playerInventory:
   - {fileID: 11400000, guid: 8b60e3f6d97eeb94f9d17ea79ef852fd, type: 2}
   - {fileID: 11400000, guid: 27090329619fe824faa2cedcc6723e01, type: 2}
+  - {fileID: 11400000, guid: 33ec24b3bdd12ab49b093f44cc3d883f, type: 2}
+  - {fileID: 11400000, guid: 8b60e3f6d97eeb94f9d17ea79ef852fd, type: 2}
+  - {fileID: 11400000, guid: 8b60e3f6d97eeb94f9d17ea79ef852fd, type: 2}
+  - {fileID: 11400000, guid: 33ec24b3bdd12ab49b093f44cc3d883f, type: 2}
   inventoryPanel: {fileID: 1101716895}
   inventorySlotPrefab: {fileID: 2004696671069944727, guid: fbced9ac1df46074e92a412d0b726a43, type: 3}
   rightWeapon: {fileID: 11400000, guid: 27090329619fe824faa2cedcc6723e01, type: 2}
