@@ -9,9 +9,12 @@ namespace Item_Scripts
         [SerializeField] private Sprite itemIcon;
 
         [SerializeField] private string itemName;
+        [TextArea(15,20)]
+        [SerializeField] private string itemDescription;
         
         public Sprite ItemIcon => itemIcon;
 
         public string ItemName => itemName;
+        public string ItemDescription => itemDescription;
     }
 }
