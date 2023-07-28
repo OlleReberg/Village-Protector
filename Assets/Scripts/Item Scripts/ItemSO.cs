@@ -8,12 +8,14 @@ namespace Item_Scripts
         [Header("Item Info")] 
         [SerializeField] private Sprite itemIcon;
 
+        [SerializeField] private int quantity;
         [SerializeField] private string itemName;
         [TextArea(15,20)]
         [SerializeField] private string itemDescription;
         
+        
         public Sprite ItemIcon => itemIcon;
-
+        public int Quantity => quantity;
         public string ItemName => itemName;
         public string ItemDescription => itemDescription;
     }

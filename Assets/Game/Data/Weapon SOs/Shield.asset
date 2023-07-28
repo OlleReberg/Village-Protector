@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Shield
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 7f45fdd48135af242b30ed1e220e891b, type: 3}
+  quantity: 0
   itemName: Shield
+  itemDescription: It's a shield of some sort
   modelPrefab: {fileID: 5003529013874437608, guid: f2adb1e5f5476624d8b17528c365de20, type: 3}
   isUnarmed: 0

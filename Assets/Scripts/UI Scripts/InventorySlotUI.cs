@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-
-using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    // References to the UI elements in the inventory slot prefab
+    public Image itemIconImage;
+    public TextMeshProUGUI quantityText;
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         // Implement drag logic (e.g., detect item being dragged and show visual feedback)

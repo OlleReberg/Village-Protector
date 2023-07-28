@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 21.672117, g: 18.897612, b: 15.591394, a: 1}
+  m_IndirectSpecularColor: {r: 21.70514, g: 18.926107, b: 15.612589, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4597,10 +4597,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d335a2b283c0e35489c361e3fcb4f62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInventory: []
-  inventoryPanel: {fileID: 0}
-  inventorySlotPrefab: {fileID: 0}
-  rightWeapon: {fileID: 0}
+  playerInventory:
+  - {fileID: 11400000, guid: 8b60e3f6d97eeb94f9d17ea79ef852fd, type: 2}
+  - {fileID: 11400000, guid: 8b60e3f6d97eeb94f9d17ea79ef852fd, type: 2}
+  - {fileID: 11400000, guid: 27090329619fe824faa2cedcc6723e01, type: 2}
+  - {fileID: 11400000, guid: 33ec24b3bdd12ab49b093f44cc3d883f, type: 2}
+  inventoryPanel: {fileID: 1101716895}
+  inventorySlotPrefab: {fileID: 2004696671069944727, guid: fbced9ac1df46074e92a412d0b726a43, type: 3}
+  rightWeapon: {fileID: 11400000, guid: 27090329619fe824faa2cedcc6723e01, type: 2}
   leftWeapon: {fileID: 11400000, guid: 33ec24b3bdd12ab49b093f44cc3d883f, type: 2}
 --- !u!114 &1223525767
 MonoBehaviour:

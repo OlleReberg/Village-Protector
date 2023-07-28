@@ -68,5 +68,33 @@ public class PlayerInventory : MonoBehaviour
             observer.OnItemRemovedFromInventory(item);
         }
     }
+    
+    private void UpdateUI()
+    {
+        // Clear existing slots in the UI
+        foreach (Transform child in inventoryPanel.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Instantiate inventory slots for each item in the playerInventory
+        foreach (ItemSO item in playerInventory)
+        {
+            GameObject newSlot = Instantiate(inventorySlotPrefab, inventoryPanel.transform);
+            // Set the item icon and other data in the newSlot UI using 'item'
+            // You'll need to access the UI elements in 'newSlot' and set their properties based on the 'item' data.
+        }
+        
+        // Instantiate inventory slots for each item in the playerInventory
+        foreach (ItemSO item in playerInventory)
+        {
+            GameObject newSlot = Instantiate(inventorySlotPrefab, inventoryPanel.transform);
+            InventorySlotUI slotUI = newSlot.GetComponent<InventorySlotUI>();
+        
+            // Set the item icon and other data in the newSlot UI using 'item'
+            slotUI.itemIconImage.sprite = item.ItemIcon;
+            slotUI.quantityText.text = "x" + item.Quantity.ToString(); // If you have a quantity property in your ItemSO, set it accordingly.
+        }
+    }
 
 }

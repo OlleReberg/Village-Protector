@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Base Sword
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: dcd5270909ce4c4468a1fa0cd23ba2f3, type: 3}
+  quantity: 0
   itemName: Base Sword
+  itemDescription: Basic Bitch Sword. It's basic.
   modelPrefab: {fileID: 5343879200532584697, guid: 3cbe29533daaaaf42b9da3c5be098169, type: 3}
   isUnarmed: 0
