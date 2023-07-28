@@ -86,20 +86,13 @@ public class PlayerInventory : MonoBehaviour
         // Instantiate inventory slots for each item in the playerInventory
         foreach (ItemSO item in playerInventory)
         {
-            GameObject newSlot = Instantiate(inventorySlotPrefab, inventoryPanel.transform);
-            // Set the item icon and other data in the newSlot UI using 'item'
-            // You'll need to access the UI elements in 'newSlot' and set their properties based on the 'item' data.
-        }
-        
-        // Instantiate inventory slots for each item in the playerInventory
-        foreach (ItemSO item in playerInventory)
-        {
+            // Instantiate the inventory slot prefab only once
             GameObject newSlot = Instantiate(inventorySlotPrefab, inventoryPanel.transform);
             InventorySlotUI slotUI = newSlot.GetComponent<InventorySlotUI>();
-        
-            // Set the item icon and other data in the newSlot UI using 'item'
+
+            // Set the item icon and quantity in the newSlot UI using 'item'
             slotUI.itemIconImage.sprite = item.ItemIcon;
-            slotUI.quantityText.text = "x" + item.Quantity.ToString(); // If you have a quantity property in your ItemSO, set it accordingly.
+            slotUI.quantityText.text = "x" + item.Quantity.ToString();
         }
     }
 
