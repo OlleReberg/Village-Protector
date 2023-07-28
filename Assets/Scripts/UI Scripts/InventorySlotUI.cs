@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,6 +11,11 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     // References to the UI elements in the inventory slot prefab
     public Image itemIconImage;
     public TextMeshProUGUI quantityText;
+
+    private void Start()
+    {
+        Debug.Log("Item Icon Image: " + itemIconImage);
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
