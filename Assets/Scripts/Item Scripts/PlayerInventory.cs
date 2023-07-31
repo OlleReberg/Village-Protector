@@ -113,5 +113,12 @@ public class PlayerInventory : MonoBehaviour
         // Set preserveAspect to true programmatically
         image.preserveAspect = true;
     }
+    
+    public void PickupLoot(ItemSO item)
+    {
+        // Perform any actions related to picking up the loot (e.g., displaying loot acquisition message, playing sound, etc.)
 
+        // Add the item to the player's inventory
+        AddItemToInventory(item);
+    }
 }
