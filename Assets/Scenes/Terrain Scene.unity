@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 21.932726, g: 17.55203, b: 13.006159, a: 1}
+  m_IndirectSpecularColor: {r: 21.971762, g: 17.5855, b: 13.028063, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5281,7 +5281,7 @@ MonoBehaviour:
   cpuEvaluateRipples: 1
   timeMultiplier: 0.22
   repetitionSize: 250
-  largeWindSpeed: 30
+  largeWindSpeed: 20
   largeWindOrientationValue: 0
   largeCurrentSpeedValue: 5
   largeCurrentOrientationValue: 64.73
@@ -5326,12 +5326,12 @@ MonoBehaviour:
   causticsBand: 2
   virtualPlaneDistance: 4
   foam: 1
-  simulationFoamAmount: 1
+  simulationFoamAmount: 0.836
   simulationFoamDrag: 0
-  simulationFoamSmoothness: 1
-  foamMask: {fileID: 0}
+  simulationFoamSmoothness: 0.797
+  foamMask: {fileID: 2800000, guid: 5fbcffe9c2077f04186883cb39275fcc, type: 3}
   foamMaskExtent: {x: 100, y: 100}
-  foamMaskOffset: {x: 0, y: 0}
+  foamMaskOffset: {x: 100, y: 100}
   windFoamCurve:
     serializedVersion: 2
     m_Curve:
@@ -5345,8 +5345,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.2
-      value: 0
+      time: 0.13490763
+      value: 0.8340941
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5374,8 +5374,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  foamTexture: {fileID: 0}
-  foamTextureTiling: 1
+  foamTexture: {fileID: 2800000, guid: 1847c427ebed2b7469dd22667fe6e4e0, type: 3}
+  foamTextureTiling: 0.05
   waterMask: {fileID: 0}
   waterMaskExtent: {x: 100, y: 100}
   waterMaskOffset: {x: 0, y: 0}
