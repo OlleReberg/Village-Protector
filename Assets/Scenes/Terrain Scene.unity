@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 21.971762, g: 17.5855, b: 13.028063, a: 1}
+  m_IndirectSpecularColor: {r: 21.625313, g: 16.997282, b: 11.843513, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5310,10 +5310,10 @@ MonoBehaviour:
   endSmoothness: 0.253
   smoothnessFadeStart: 100
   smoothnessFadeDistance: 500
-  refractionColor: {r: 0.31623352, g: 0.5943396, b: 0.5658159, a: 1}
+  refractionColor: {r: 0, g: 0, b: 0, a: 1}
   maxRefractionDistance: 2.15
   absorptionDistance: 32
-  scatteringColor: {r: 0.39999998, g: 1, b: 0.93868697, a: 1}
+  scatteringColor: {r: 0.15471691, g: 0.96324855, b: 1, a: 1}
   ambientScattering: 0.2
   heightScattering: 0.07
   displacementScattering: 0.1
@@ -5322,7 +5322,7 @@ MonoBehaviour:
   caustics: 1
   causticsIntensity: 0.5
   causticsPlaneBlendDistance: 1
-  causticsResolution: 256
+  causticsResolution: 1024
   causticsBand: 2
   virtualPlaneDistance: 4
   foam: 1
@@ -5345,8 +5345,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.13490763
-      value: 0.8340941
+      time: 0.09940043
+      value: 0.9118605
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5375,7 +5375,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   foamTexture: {fileID: 2800000, guid: 1847c427ebed2b7469dd22667fe6e4e0, type: 3}
-  foamTextureTiling: 0.05
+  foamTextureTiling: 0.01
   waterMask: {fileID: 0}
   waterMaskExtent: {x: 100, y: 100}
   waterMaskOffset: {x: 0, y: 0}
