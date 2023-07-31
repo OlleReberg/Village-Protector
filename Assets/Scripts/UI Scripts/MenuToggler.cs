@@ -36,9 +36,6 @@ public class MenuToggler : MonoBehaviour
 
         // Disable the CameraController to prevent player movement during the pause
         cameraController.enabled = false;
-
-        // Log a message to indicate that the game is paused
-        Debug.Log("Game should be paused");
     }
 
     // Method to resume the game
