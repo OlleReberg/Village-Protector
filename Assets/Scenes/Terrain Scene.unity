@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 21.625313, g: 16.997282, b: 11.843513, a: 1}
+  m_IndirectSpecularColor: {r: 0.018868344, g: 0.038104918, b: 0.06629603, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2268,19 +2268,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2784257829321446931, guid: cc24d356ce1c57a4db18d58f81e5d254, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.14096296
+      value: -0.15755907
       objectReference: {fileID: 0}
     - target: {fileID: 2784257829321446931, guid: cc24d356ce1c57a4db18d58f81e5d254, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.21706395
+      value: -0.20533498
       objectReference: {fileID: 0}
     - target: {fileID: 2784257829321446931, guid: cc24d356ce1c57a4db18d58f81e5d254, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.52608085
+      value: 0.58801836
       objectReference: {fileID: 0}
     - target: {fileID: 2784257829321446931, guid: cc24d356ce1c57a4db18d58f81e5d254, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.8100936
+      value: -0.76632047
       objectReference: {fileID: 0}
     - target: {fileID: 2784257829321446931, guid: cc24d356ce1c57a4db18d58f81e5d254, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2295,16 +2295,36 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3082948357342926861, guid: cc24d356ce1c57a4db18d58f81e5d254, type: 3}
+      propertyPath: m_Intensity
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082948357342926861, guid: cc24d356ce1c57a4db18d58f81e5d254, type: 3}
       propertyPath: m_FlareTint.b
-      value: 0.9528302
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3082948357342926861, guid: cc24d356ce1c57a4db18d58f81e5d254, type: 3}
       propertyPath: m_FlareTint.g
-      value: 0.94275314
+      value: 0.96938777
       objectReference: {fileID: 0}
     - target: {fileID: 3082948357342926861, guid: cc24d356ce1c57a4db18d58f81e5d254, type: 3}
       propertyPath: m_FlareTint.r
-      value: 0.5699003
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082948357342926861, guid: cc24d356ce1c57a4db18d58f81e5d254, type: 3}
+      propertyPath: m_FlareFalloff
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082948357342926861, guid: cc24d356ce1c57a4db18d58f81e5d254, type: 3}
+      propertyPath: m_SurfaceTint.b
+      value: 0.98994637
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082948357342926861, guid: cc24d356ce1c57a4db18d58f81e5d254, type: 3}
+      propertyPath: m_SurfaceTint.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082948357342926861, guid: cc24d356ce1c57a4db18d58f81e5d254, type: 3}
+      propertyPath: m_SurfaceTint.r
+      value: 0.86226416
       objectReference: {fileID: 0}
     - target: {fileID: 3082948357342926861, guid: cc24d356ce1c57a4db18d58f81e5d254, type: 3}
       propertyPath: m_SurfaceTexture
@@ -2312,15 +2332,19 @@ PrefabInstance:
       objectReference: {fileID: 2800000, guid: 9c6830d83aeb55444a5a8345fa6295dc, type: 3}
     - target: {fileID: 3082948357342926861, guid: cc24d356ce1c57a4db18d58f81e5d254, type: 3}
       propertyPath: m_AngularDiameter
-      value: 30
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7980207449287505487, guid: cc24d356ce1c57a4db18d58f81e5d254, type: 3}
+      propertyPath: m_Intensity
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7980207449287505487, guid: cc24d356ce1c57a4db18d58f81e5d254, type: 3}
       propertyPath: m_ShadowAngle
-      value: 30
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7980207449287505487, guid: cc24d356ce1c57a4db18d58f81e5d254, type: 3}
       propertyPath: m_Shadows.m_Type
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3461,7 +3485,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: e3245271198f90043a4dcfbba48b8f8f, type: 2}
+  sharedProfile: {fileID: 11400000, guid: ed233f9ac2bf6bc41beb55fdc7131831, type: 2}
 --- !u!4 &741942284
 Transform:
   m_ObjectHideFlags: 0
@@ -3489,7 +3513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172e43281ca26654a99463911db12820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tOD: 10.4
+  tOD: 1
   orbitSpeed: 0.05
   sun: {fileID: 1438498781}
   moon: {fileID: 503517540}
@@ -5752,19 +5776,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3407591525435888541, guid: 2491769f368e64548a61dd8ace34092c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.21706395
+      value: 0.20533498
       objectReference: {fileID: 0}
     - target: {fileID: 3407591525435888541, guid: 2491769f368e64548a61dd8ace34092c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.14096296
+      value: -0.15755907
       objectReference: {fileID: 0}
     - target: {fileID: 3407591525435888541, guid: 2491769f368e64548a61dd8ace34092c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.8100936
+      value: -0.76632047
       objectReference: {fileID: 0}
     - target: {fileID: 3407591525435888541, guid: 2491769f368e64548a61dd8ace34092c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.52608085
+      value: -0.58801836
       objectReference: {fileID: 0}
     - target: {fileID: 3407591525435888541, guid: 2491769f368e64548a61dd8ace34092c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5816,7 +5840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8814236728286376449, guid: 2491769f368e64548a61dd8ace34092c, type: 3}
       propertyPath: m_Shadows.m_Type
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8814236728286376449, guid: 2491769f368e64548a61dd8ace34092c, type: 3}
       propertyPath: m_ColorTemperature
