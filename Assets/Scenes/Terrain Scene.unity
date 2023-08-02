@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 15.940835, g: 12.399248, b: 8.8305025, a: 1}
+  m_IndirectSpecularColor: {r: 14.110758, g: 11.584538, b: 9.404992, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -674,6 +674,7 @@ GameObject:
   m_Component:
   - component: {fileID: 180415989}
   - component: {fileID: 180415990}
+  - component: {fileID: 180415991}
   m_Layer: 4
   m_Name: River
   m_TagString: Untagged
@@ -714,7 +715,7 @@ MonoBehaviour:
   cpuSimulation: 1
   cpuFullResolution: 1
   cpuEvaluateRipples: 1
-  timeMultiplier: 1.96
+  timeMultiplier: 1.2
   repetitionSize: 75
   largeWindSpeed: 13
   largeWindOrientationValue: 0
@@ -745,10 +746,10 @@ MonoBehaviour:
   endSmoothness: 0.364
   smoothnessFadeStart: 100
   smoothnessFadeDistance: 500
-  refractionColor: {r: 0.87169814, g: 0.95290184, b: 1, a: 1}
+  refractionColor: {r: 0.16078432, g: 0.5019608, b: 0.5294118, a: 1}
   maxRefractionDistance: 1.89
-  absorptionDistance: 37.5
-  scatteringColor: {r: 0.054901954, g: 0.124092855, b: 0.30980393, a: 1}
+  absorptionDistance: 30
+  scatteringColor: {r: 0.15475255, g: 0.38486293, b: 0.3962264, a: 1}
   ambientScattering: 0.494
   heightScattering: 0.665
   displacementScattering: 0.1
@@ -816,12 +817,33 @@ MonoBehaviour:
   waterMaskOffset: {x: 0, y: 0}
   decalLayerMask: 1
   lightLayerMask: 1
-  underWater: 0
-  volumeBounds: {fileID: 0}
+  underWater: 1
+  volumeBounds: {fileID: 180415991}
   volumeDepth: 50
   volumePrority: 0
   transitionSize: 0.1
-  absorbtionDistanceMultiplier: 1
+  absorbtionDistanceMultiplier: 15
+--- !u!65 &180415991
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180415988}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 5, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &244817242
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5278,8 +5300,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323484196}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 700, y: 700, z: 1000}
+  m_LocalPosition: {x: 60, y: 0, z: 0}
+  m_LocalScale: {x: 500, y: 700, z: 1000}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1635483300}
@@ -5303,7 +5325,7 @@ MonoBehaviour:
   cpuSimulation: 1
   cpuFullResolution: 1
   cpuEvaluateRipples: 1
-  timeMultiplier: 0.22
+  timeMultiplier: 1
   repetitionSize: 250
   largeWindSpeed: 20
   largeWindOrientationValue: 0
@@ -5334,10 +5356,10 @@ MonoBehaviour:
   endSmoothness: 0.253
   smoothnessFadeStart: 100
   smoothnessFadeDistance: 500
-  refractionColor: {r: 0, g: 0, b: 0, a: 1}
+  refractionColor: {r: 0.16148095, g: 0.5020139, b: 0.5283019, a: 1}
   maxRefractionDistance: 2.15
-  absorptionDistance: 32
-  scatteringColor: {r: 0.15471691, g: 0.96324855, b: 1, a: 1}
+  absorptionDistance: 20
+  scatteringColor: {r: 0.36486292, g: 0.68422765, b: 0.6981132, a: 1}
   ambientScattering: 0.2
   heightScattering: 0.07
   displacementScattering: 0.1
@@ -5346,7 +5368,7 @@ MonoBehaviour:
   caustics: 1
   causticsIntensity: 0.5
   causticsPlaneBlendDistance: 1
-  causticsResolution: 1024
+  causticsResolution: 512
   causticsBand: 2
   virtualPlaneDistance: 4
   foam: 1
@@ -5410,7 +5432,7 @@ MonoBehaviour:
   volumeDepth: 50
   volumePrority: 0
   transitionSize: 0.1
-  absorbtionDistanceMultiplier: 1
+  absorbtionDistanceMultiplier: 15
 --- !u!65 &1323484199
 BoxCollider:
   m_ObjectHideFlags: 0
