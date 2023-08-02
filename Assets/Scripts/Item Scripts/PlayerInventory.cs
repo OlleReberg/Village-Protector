@@ -40,7 +40,14 @@ public class PlayerInventory : MonoBehaviour
         GameObject newSlot = Instantiate(inventorySlotPrefab, 
             inventoryPanel.transform); // Set the item icon and other data in the newSlot UI using 'item'
         
-        NotifyObserversItemAdded(item);
+        InventorySlotUI slotUI = newSlot.GetComponent<InventorySlotUI>();
+
+        // Set the item icon and quantity in the newSlot UI using 'item'
+        slotUI.itemIconImage.sprite = item.ItemIcon;
+        slotUI.quantityText.text = "x" + item.Quantity.ToString();
+        
+        // Adjust image aspect ratio to fit within the UISlot
+        AdjustImageAspect(slotUI.itemIconImage);
     }
 
     public void RemoveItemFromInventory(ItemSO item)
@@ -48,6 +55,9 @@ public class PlayerInventory : MonoBehaviour
         playerInventory.Remove(item);
         // Notify observers (other systems) that an item has been removed.
         NotifyObserversItemRemoved(item);
+
+        // Update the UI after removing the item
+        UpdateUI();
     }
     
     public void AddObserver(IInventoryObserver observer)

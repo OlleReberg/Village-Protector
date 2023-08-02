@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Item_Scripts;
 using UnityEngine;
 
 using UnityEngine;
@@ -7,6 +8,7 @@ using UnityEngine;
 public class PlayerPickupHandler : MonoBehaviour
 {
     public PlayerInventory playerInventory; // Reference to the player's inventory script
+    public InventorySlotUI[] inventorySlots; // Array to store the inventory slot UI components
 
     private void Start()
     {
@@ -18,6 +20,12 @@ public class PlayerPickupHandler : MonoBehaviour
         {
             Debug.LogWarning("PlayerInventory script not found.");
         }
+    }
+
+    public void PopulateInventorySlots(InventorySlotUI[] slots)
+    {
+        // Store the references to the inventory slot UI components
+        inventorySlots = slots;
     }
 
     private void OnEnable()
@@ -38,6 +46,26 @@ public class PlayerPickupHandler : MonoBehaviour
         if (playerInventory != null)
         {
             playerInventory.PickupLoot(FindObjectOfType<Loot>().item);
+
+            // Update the inventory UI after picking up the item
+            UpdateInventoryUI();
+        }
+    }
+
+    private void UpdateInventoryUI()
+    {
+        // Loop through the player's inventory and update the UI slots accordingly
+        for (int i = 0; i < playerInventory.playerInventory.Count; i++)
+        {
+            if (i < inventorySlots.Length)
+            {
+                InventorySlotUI slotUI = inventorySlots[i];
+                ItemSO item = playerInventory.playerInventory[i];
+
+                // Set the item icon and quantity in the UI slot using 'item'
+                slotUI.itemIconImage.sprite = item.ItemIcon;
+                slotUI.quantityText.text = "x" + item.Quantity.ToString();
+            }
         }
     }
 }
