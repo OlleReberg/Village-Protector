@@ -14,6 +14,8 @@ public class PlayerInventory : MonoBehaviour
     private WeaponSlotManager weaponSlotManager;
     public WeaponItem rightWeapon;
     public WeaponItem leftWeapon;
+    
+    private TooltipWindow tooltipWindow;
 
     private void Awake()
     {
@@ -23,6 +25,12 @@ public class PlayerInventory : MonoBehaviour
 
     private void Start()
     {
+        tooltipWindow = FindObjectOfType<TooltipWindow>();
+        if (tooltipWindow != null)
+        {
+            // Subscribe to the OnItemHovered event
+            //TooltipWindow.OnItemHovered += OnItemHovered;
+        }
         weaponSlotManager.LoadWeaponOnSlot(rightWeapon, false);
         weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true);
     }
