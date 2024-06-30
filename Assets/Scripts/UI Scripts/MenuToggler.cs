@@ -36,6 +36,9 @@ public class MenuToggler : MonoBehaviour
 
         // Disable the CameraController to prevent player movement during the pause
         cameraController.enabled = false;
+
+        //display cursor and unlock it
+        ShowCursor();
     }
 
     // Method to resume the game
@@ -49,6 +52,9 @@ public class MenuToggler : MonoBehaviour
 
         // Enable the CameraController to allow player movement after resuming
         cameraController.enabled = true;
+
+        //Hides and locks cursor
+        HideCursor();
 
         // Log a message to indicate that the game is unpaused
         Debug.Log("Game should be unpaused");
@@ -73,6 +79,19 @@ public class MenuToggler : MonoBehaviour
                 inventoryPanel.SetActive(false);
             }
         }
+    }
+
+    public void ShowCursor()
+    {
+        // Show the cursor and unlock it (useful for menus).
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+    public void HideCursor()
+    {
+        // Hide the cursor and lock it (useful when returning to gameplay).
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
 
