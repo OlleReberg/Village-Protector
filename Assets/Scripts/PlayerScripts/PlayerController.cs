@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
         cameraController = Camera.main.GetComponent<CameraController>();
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
+        
     }
 
     private void Update()

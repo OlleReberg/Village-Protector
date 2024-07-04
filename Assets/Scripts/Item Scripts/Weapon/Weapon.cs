@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour
 {
     private BoxCollider damageCollider; // The BoxCollider component attached to the weapon
     [SerializeField] private WeaponstatsSO weaponStats; // Reference to a ScriptableObject that contains weapon stats
+    public ParticleSystem trail; //Attached particle system to weapon
     
     private void Awake()
     {
@@ -16,6 +17,8 @@ public class Weapon : MonoBehaviour
         damageCollider.gameObject.SetActive(true); // Ensure the collider object is active
         damageCollider.isTrigger = true; // Set the collider to be a trigger to detect collisions without affecting physics
         damageCollider.enabled = false; // Disable the collider by default until the attack is initiated
+        //trail = GetComponentInChildren<ParticleSystem>(); //get trail component
+        //trail.gameObject.SetActive(false); //set it to false
     }
 
     public void EnableDamageCollider()

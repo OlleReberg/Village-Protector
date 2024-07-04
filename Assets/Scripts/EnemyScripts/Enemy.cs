@@ -36,13 +36,18 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        EnemyAttack();
+
+        EnemyDeath();
+    }
+
+    private void EnemyAttack()
+    {
         // Reduce the time until the next attack can be made
         attackCooldown = Mathf.Max(0, attackCooldown - Time.deltaTime);
 
         // Reduce the time until the unique ability can be used again
         abilityCooldown = Mathf.Max(0, abilityCooldown - Time.deltaTime);
-        
-        EnemyDeath();
     }
 
     public void EnemyDeath()

@@ -11,6 +11,7 @@ public class WeaponSlotManager : MonoBehaviour
 
     private Weapon leftHandDamageCollider;
     private Weapon rightHandDamageCollider;
+    private Weapon weaponTrail;
 
     private void Awake()
     {
@@ -44,7 +45,8 @@ public class WeaponSlotManager : MonoBehaviour
             LoadRightWeaponCollider(); // Load the right hand weapon's damage collider reference
         }
     }
-
+    
+    
     #region Handle Weapon's Damage Collider
     
     public void LoadLeftWeaponCollider()
@@ -83,5 +85,22 @@ public class WeaponSlotManager : MonoBehaviour
         leftHandDamageCollider.DisableDamageCollider();
     }
     
+    #endregion
+    
+    #region Handle Weapon trail
+
+    public void EnableWeaponTrail()
+    {
+        rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<Weapon>();
+        //Enable Weapon trail
+        rightHandDamageCollider.trail.gameObject.SetActive(true);
+    }
+
+    public void DisableWeaponTrail()
+    {
+        rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<Weapon>();
+        //Disable Weapon trail
+        rightHandDamageCollider.trail.gameObject.SetActive(false);
+    }
     #endregion
 }
