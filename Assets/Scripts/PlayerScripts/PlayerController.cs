@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator; // Animator component of the player
     private CameraController cameraController; // Camera controller component of the main camera
     private CharacterController characterController; // Character controller component of the player
+    private PlayerCombatController playerCombatController; // Reference to the PlayerCombatController
 
     private void Awake()
     {
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
         cameraController = Camera.main.GetComponent<CameraController>();
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
-        
+        playerCombatController = GetComponent<PlayerCombatController>(); // Get the PlayerCombatController component
     }
 
     private void Update()
@@ -79,8 +80,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isJumping", false); // Set the "isJumping" parameter in the animator to false
         }
-
-
+        
         // Move the player
         characterController.Move(velocity * Time.deltaTime);
     }
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
 
         // Calculate the velocity
         var velocity = moveDir * moveSpeed;
-
+        
         // Move the player
         characterController.Move(velocity * Time.deltaTime);
         return moveDir;
