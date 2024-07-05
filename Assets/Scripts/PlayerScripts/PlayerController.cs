@@ -99,6 +99,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isJumping", false); // Reset jumping animation
         }
         characterController.Move(velocity * Time.deltaTime); // Move the player
+        playerState = PlayerState.Idle; // Set player state to idle
     }
 
     private void Gravity()

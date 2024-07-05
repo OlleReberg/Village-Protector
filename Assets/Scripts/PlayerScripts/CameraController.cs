@@ -28,7 +28,7 @@ public class CameraController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         //If one wants inverted rotation,
         invertXVal = (invertX) ? -1 : 1;
