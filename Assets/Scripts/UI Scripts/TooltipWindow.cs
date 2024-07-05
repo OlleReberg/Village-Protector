@@ -49,7 +49,6 @@ public class TooltipWindow : MonoBehaviour
         if (OnItemHovered != null)
         {
             OnItemHovered(item);
-            Debug.Log("Hovering " + item.ItemName);
         }
     }
 
