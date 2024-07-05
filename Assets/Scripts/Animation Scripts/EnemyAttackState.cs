@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AttackState : StateMachineBehaviour
+public class EnemyAttackState : StateMachineBehaviour
 {
     public class EnemyChaseState : StateMachineBehaviour
     {

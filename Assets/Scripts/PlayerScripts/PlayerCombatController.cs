@@ -8,58 +8,60 @@ using UnityEngine.VFX;
 
 public class PlayerCombatController : MonoBehaviour
 {
-    private Animator animator; // Reference to the Animator component attached to the player
-    private Weapon weapon; // Reference to the Weapon component attached to the player
-    [FormerlySerializedAs("attckCombo")] public List<AttackSO> attackCombo; // List of AttackSO (ScriptableObject) containing attack combos
-    private float lastClickedTime; // Time of the last click
-    private float lastComboEnd; // Time when the last combo ended
-    private int comboCounter; // Counter for tracking the current combo index
+    private Animator animator;
+    private Weapon weapon;
+    public List<AttackSO> attackCombo;
+    private float lastClickedTime;
+    private float lastComboEnd;
+    private int comboCounter;
     public float delay = 1f;
     public VisualEffect lightning;
-    private PlayerController playerController; // Reference to the PlayerController
-    
-    public bool IsAttacking { get; private set; } // Public property to check if the player is attacking
+    private PlayerController playerController;
+
+    public bool IsAttacking { get; private set; }
+    public event Action OnAttackStart;
+    public event Action OnAttackEnd;
 
     private void Awake()
     {
-        animator = GetComponent<Animator>(); // Assign the Animator component to the animator variable
+        animator = GetComponent<Animator>();
         lightning.gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        
         if (Input.GetButtonDown("Fire1"))
         {
-            Attack(); // Perform an attack when the "Fire1" button is pressed
+            Attack();
         }
-        
+
         if (Input.GetButtonDown("Fire2"))
         {
             StartCoroutine(AbilitySequence());
         }
-        ExitAttack(); // Check if the attack animation has finished and exit the attack state
+
+        ExitAttack();
     }
+
     void Attack()
     {
         if (Time.time - lastComboEnd > 0.5f && comboCounter < attackCombo.Count)
         {
-            CancelInvoke("EndCombo"); // Cancel the previous Invoke to end the combo
+            CancelInvoke("EndCombo");
 
             if (Time.time - lastClickedTime >= 0.3f)
             {
-                IsAttacking = true; // Set IsAttacking to true when starting an attack
-                
-                // Set the animator's runtime controller to the current combo's animator override
+                IsAttacking = true;
+                OnAttackStart?.Invoke();
+
                 animator.runtimeAnimatorController = attackCombo[comboCounter].animatorOV;
-                animator.Play("Attack", 0, 0); // Play the "Attack" animation from the beginning
-                //weapon.damage = attackCombo[comboCounter].damage; // Set the weapon's damage to the damage value of the current combo
-                comboCounter++; // Increment the combo counter
-                lastClickedTime = Time.time; // Update the last clicked time
+                animator.Play("Attack", 0, 0);
+                comboCounter++;
+                lastClickedTime = Time.time;
 
                 if (comboCounter >= attackCombo.Count)
                 {
-                    comboCounter = 0; // Reset the combo counter if it exceeds the number of available combos
+                    comboCounter = 0;
                 }
             }
         }
@@ -74,18 +76,19 @@ public class PlayerCombatController : MonoBehaviour
 
     void ExitAttack()
     {
-        // Invoke the EndCombo method after 1 second if the attack animation is almost complete and tagged as "Attack"
-        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f 
-            && animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f && animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
         {
             Invoke("EndCombo", 1);
         }
+        //playerController.HandleAttackEnd();
     }
 
     void EndCombo()
     {
-        comboCounter = 0; // Reset the combo counter to start a new combo
-        lastComboEnd = Time.time; // Update the last combo end time
-        IsAttacking = false; // Set IsAttacking to false at end of attack
+        comboCounter = 0;
+        lastComboEnd = Time.time;
+        IsAttacking = false;
+        OnAttackEnd?.Invoke();
     }
 }
+
