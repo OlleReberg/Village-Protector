@@ -56,6 +56,8 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.Jumping:
                 // Handle jump logic if needed
+                Gravity();
+                GroundCheck();
                 break;
         }
     }
@@ -98,7 +100,6 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isJumping", false); // Reset jumping animation
         }
-
         characterController.Move(velocity * Time.deltaTime); // Move the player
     }
 
