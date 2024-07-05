@@ -1,3 +1,4 @@
+using PlayerScripts;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -5,6 +6,7 @@ public class Enemy : MonoBehaviour
     // The stats of this enemy
     [SerializeField] private EnemyStatsSO enemyStats;
     public Animator animator;
+    private PlayerStats playerStats;
     
     //get enemymovement script
     private EnemyMovement enemyMovement;
@@ -45,7 +47,8 @@ public class Enemy : MonoBehaviour
     {
         // Reduce the time until the next attack can be made
         attackCooldown = Mathf.Max(0, attackCooldown - Time.deltaTime);
-
+        
+        
         // Reduce the time until the unique ability can be used again
         abilityCooldown = Mathf.Max(0, abilityCooldown - Time.deltaTime);
     }

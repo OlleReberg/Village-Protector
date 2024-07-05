@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded; // Flag to check if the player is grounded
     private float ySpeed; // Vertical speed for gravity and jumping
     private Quaternion targetRotation; // Target rotation for the player
-    private Animator animator; // Animator component for controlling animations
+    public Animator animator; // Animator component for controlling animations
     private CameraController cameraController; // Reference to the camera controller
     private CharacterController characterController; // Reference to the character controller
     private PlayerCombatController playerCombatController; // Reference to the combat controller
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Debug.Log($"PlayerState: {playerState}");
-        
+
         // Handle player actions based on the current state
         switch (playerState)
         {
@@ -56,8 +56,6 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.Jumping:
                 // Handle jump logic if needed
-                Gravity();
-                GroundCheck();
                 break;
         }
     }

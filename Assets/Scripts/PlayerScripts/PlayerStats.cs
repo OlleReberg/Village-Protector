@@ -6,7 +6,7 @@ namespace PlayerScripts
     public class PlayerStats: MonoBehaviour
     {
         [SerializeField] private PlayerStatsSO playerstats;
-        public int currentHealth;
+        public float currentHealth;
 
         public void Awake()
         {
