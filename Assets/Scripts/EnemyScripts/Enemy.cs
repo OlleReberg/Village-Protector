@@ -1,7 +1,7 @@
 using PlayerScripts;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable
 {
     // The stats of this enemy
     [SerializeField] private EnemyStatsSO enemyStats;
@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     private float abilityCooldown = 0f; // The time until the enemy can use their unique ability again
     private GameObject player; // The player object that the enemy will be attacking
     private bool isAttacking = false; // Whether or not the enemy is currently attacking the player
+    private Weapon weapon;
 
     private void Awake()
     {
@@ -28,8 +29,6 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         EnemyAttack();
-
-        EnemyDeath();
     }
 
     private void EnemyAttack()
@@ -45,12 +44,9 @@ public class Enemy : MonoBehaviour
     {
        currentHealth = Mathf.Clamp(currentHealth, 0, enemyStats.MaxHealth);
         // If the current health of the enemy is less than or equal to 0, destroy the enemy object
-        if (currentHealth <= 0)
-        {
-            animator.ResetTrigger("damage");
-            animator.SetTrigger("death");
+        animator.ResetTrigger("damage");
+        animator.SetTrigger("death");
             
-        }
     }
 
     private void DestroyEnemy()
@@ -72,4 +68,28 @@ public class Enemy : MonoBehaviour
         // Set the player that the enemy will be attacking
         this.player = player;
     }
+
+    public void TakeDamage(float damageAmount)
+    {
+        currentHealth -= damageAmount;
+        if (currentHealth <= 0)
+        {
+            EnemyDeath();
+        }
+        else
+        {
+            animator.SetTrigger("damage");
+        }
+    }
+
+    public void OpenWeaponCollider()
+    {
+        weapon.EnableDamageCollider();
+    }
+    
+    public void CloseWeaponCollider()
+    {
+        weapon.DisableDamageCollider();
+    }
+
 }

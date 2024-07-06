@@ -4,21 +4,23 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Weapon : MonoBehaviour
 {
     private BoxCollider damageCollider; // The BoxCollider component attached to the weapon
     [SerializeField] private WeaponstatsSO weaponStats; // Reference to a ScriptableObject that contains weapon stats
     public ParticleSystem trail; //Attached particle system to weapon
-    
+    private List<Collider> hitObject = new List<Collider>();
+    [SerializeField] private GameObject owningCharacter;
+    [SerializeField] private bool enableCollider;
+    [SerializeField] private float attackSpeed;
     private void Awake()
     {
         damageCollider = GetComponent<BoxCollider>(); // Assign the BoxCollider component to the damageCollider variable
         damageCollider.gameObject.SetActive(true); // Ensure the collider object is active
         damageCollider.isTrigger = true; // Set the collider to be a trigger to detect collisions without affecting physics
-        damageCollider.enabled = false; // Disable the collider by default until the attack is initiated
-        //trail = GetComponentInChildren<ParticleSystem>(); //get trail component
-        //trail.gameObject.SetActive(false); //set it to false
+        damageCollider.enabled = enableCollider; // Disable the collider by default until the attack is initiated
     }
 
     public void EnableDamageCollider()
@@ -29,20 +31,41 @@ public class Weapon : MonoBehaviour
     public void DisableDamageCollider()
     {
         damageCollider.enabled = false; // Disable the damage collider to prevent further collisions with enemies
+        hitObject.Clear();
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        var enemy = collision.GetComponent<Enemy>(); // Get the Enemy component from the collided object, if present
+        Debug.Log(collision.name);
+        if (hitObject.Contains(collision) || collision.gameObject == owningCharacter)
+        {
+            return;
+        }
+        hitObject.Add(collision);
+        if (enableCollider)
+        {
+            StartCoroutine(AttackDelay());
+        }
+        
+        var enemy = collision.GetComponent<IDamageable>(); // Get the Enemy component from the collided object, if present
         var weaponDamage = weaponStats.Damage; // Calculate the total damage of the weapon
         
         if (enemy != null)
         {
-            enemy.currentHealth -= weaponDamage; // Reduce the enemy's current health by the weapon's damage value
-            enemy.animator.SetTrigger("damage"); // Trigger the "damage" animation on the enemy's animator component
-            Debug.Log(collision);
+            enemy.TakeDamage(weaponDamage); // Reduce the enemy's current health by the weapon's damage value
             Debug.Log("Dealing " + weaponDamage + " damage to the enemy"); // Log the damage dealt to the enemy
         }
+    }
+
+    IEnumerator AttackDelay()
+    {
+        yield return new WaitForSeconds(attackSpeed);
+        hitObject.Clear();
+    }
+
+    public void EquipWeapon(GameObject owner)
+    {
+        owningCharacter = owner;
     }
 }
 

@@ -51,7 +51,7 @@ public class PlayerCombatController : MonoBehaviour
     void Attack()
     {
         // Check if the player can initiate a new combo or continue the current one
-        if (Time.time - lastComboEnd > 0.5f && comboCounter < attackCombo.Count)
+        if (Time.time - lastComboEnd > 0.3f && comboCounter < attackCombo.Count)
         {
             CancelInvoke("EndCombo"); // Cancel any pending EndCombo invocations
 

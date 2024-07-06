@@ -9,21 +9,21 @@ public class HealthBar : MonoBehaviour
 {
     public Text healthText;
     public Image healthbar;
-    public PlayerStats playerStats;
     public PlayerStatsSO playerStatsSO;
     private float health;
     private float maxHealth;
     private float lerpSpeed;
+    public PlayerController playerController;
 
     private void Start()
     {
-        health = playerStats.currentHealth;
+        playerController = FindObjectOfType<PlayerController>();
         maxHealth = playerStatsSO.MaxHealth;
     }
 
     private void Update()
     {
-        
+        health = playerController.playerStats.currentHealth;
         healthText.text = "Health: " + health + "%";
         if (health > maxHealth)
             health = maxHealth;

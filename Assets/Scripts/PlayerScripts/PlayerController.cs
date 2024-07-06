@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
     [Header("Movement & Rotation")]
     [SerializeField] private float moveSpeed = 5; // Speed at which the player moves
@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController characterController; // Reference to the character controller
     private PlayerCombatController playerCombatController; // Reference to the combat controller
     private PlayerState playerState = PlayerState.Idle; // Current state of the player
+    public PlayerStats playerStats; // Get player stats
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
         playerCombatController = GetComponent<PlayerCombatController>();
+        playerStats = GetComponent<PlayerStats>();
 
         // Subscribe to attack events
         playerCombatController.OnAttackStart += HandleAttackStart;
@@ -42,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log($"PlayerState: {playerState}");
+        //Debug.Log($"PlayerState: {playerState}");
 
         // Handle player actions based on the current state
         switch (playerState)
@@ -167,6 +169,13 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Attack Ended");
         //Reset player state to movement state when attack ends
         playerState = PlayerState.Idle;
+        
+    }
+
+    public void TakeDamage(float damageAmount)
+    {
+        playerStats.currentHealth = Mathf.Clamp(playerStats.currentHealth - damageAmount, 0, playerStats.currentHealth); // Reduce the enemy's current health by the weapon's damage value
+        animator.SetTrigger("damage"); // Trigger the "damage" animation on the enemy's animator component
         
     }
 }

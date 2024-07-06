@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Item_Scripts;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class WeaponSlotManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class WeaponSlotManager : MonoBehaviour
     private Weapon leftHandDamageCollider;
     private Weapon rightHandDamageCollider;
     private Weapon weaponTrail;
+    //public VisualEffect slashVFX;
 
     private void Awake()
     {
@@ -45,7 +47,12 @@ public class WeaponSlotManager : MonoBehaviour
             LoadRightWeaponCollider(); // Load the right hand weapon's damage collider reference
         }
     }
-    
+
+    public void WeaponslashVFX()
+    {
+        //slashVFX.gameObject.SetActive(true);
+        //slashVFX.Play();
+    }
     
     #region Handle Weapon's Damage Collider
     
@@ -53,12 +60,14 @@ public class WeaponSlotManager : MonoBehaviour
     {
         // Get the Weapon script component from the left hand weapon model's children
         leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<Weapon>();
+        leftHandDamageCollider.EquipWeapon(gameObject);
     }
 
     public void LoadRightWeaponCollider()
     {
         // Get the Weapon script component from the right hand weapon model's children
         rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<Weapon>();
+        rightHandDamageCollider.EquipWeapon(gameObject);
     }
 
     public void OpenRightWeaponCollider()
