@@ -30,10 +30,8 @@ public class EnemyAttackState : StateMachineBehaviour
             {
                 animator.SetBool("isAttacking", false);
             }
-
-            
         }
-    
+        
         override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             // This method is empty as there is no behavior to perform when exiting this state

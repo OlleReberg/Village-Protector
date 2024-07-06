@@ -8,23 +8,12 @@ public class Enemy : MonoBehaviour
     public Animator animator;
     private PlayerStats playerStats;
     
-    //get enemymovement script
-    private EnemyMovement enemyMovement;
-
-    // The current health of the enemy
-    public float currentHealth;
-
-    // The time until the enemy can attack again
-    private float attackCooldown = 0f;
-
-    // The time until the enemy can use their unique ability again
-    private float abilityCooldown = 0f;
-
-    // The player object that the enemy will be attacking
-    private GameObject player;
-
-    // Whether or not the enemy is currently attacking the player
-    private bool isAttacking = false;
+    private EnemyMovement enemyMovement; //get enemymovement script
+    public float currentHealth; // The current health of the enemy
+    private float attackCooldown = 0f; // The time until the enemy can attack again
+    private float abilityCooldown = 0f; // The time until the enemy can use their unique ability again
+    private GameObject player; // The player object that the enemy will be attacking
+    private bool isAttacking = false; // Whether or not the enemy is currently attacking the player
 
     private void Awake()
     {
@@ -47,8 +36,7 @@ public class Enemy : MonoBehaviour
     {
         // Reduce the time until the next attack can be made
         attackCooldown = Mathf.Max(0, attackCooldown - Time.deltaTime);
-        
-        
+
         // Reduce the time until the unique ability can be used again
         abilityCooldown = Mathf.Max(0, abilityCooldown - Time.deltaTime);
     }
