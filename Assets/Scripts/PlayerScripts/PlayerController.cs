@@ -176,7 +176,11 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         playerStats.currentHealth = Mathf.Clamp(playerStats.currentHealth - damageAmount, 0, playerStats.currentHealth); // Reduce the enemy's current health by the weapon's damage value
         animator.SetTrigger("damage"); // Trigger the "damage" animation on the enemy's animator component
-        
+
+        if (playerStats.currentHealth == 0)
+        {
+            animator.SetTrigger("death");
+        }
     }
 }
 
