@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using PlayerScripts;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -27,8 +28,10 @@ public class PlayerController : MonoBehaviour, IDamageable
     private PlayerCombatController playerCombatController; // Reference to the combat controller
     private PlayerState playerState = PlayerState.Idle; // Current state of the player
     public PlayerStats playerStats; // Get player stats
-    [SerializeField] private ParticleSystem explosion;
+    [SerializeField] private ParticleSystem explosion; //grab explosion particle system
     [SerializeField] private float delay;
+
+
 
     private void Awake()
     {
@@ -183,7 +186,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             animator.SetTrigger("death");
             explosion.gameObject.SetActive(true);
-            //explosion.Play();
             StartCoroutine(Die());
         }
     }
@@ -192,7 +194,10 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         yield return new WaitForSeconds(delay);
         gameObject.SetActive(false);
+        
     }
+    
+    
 }
 
 
