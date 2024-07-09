@@ -15,4 +15,5 @@ public class PlayerStatsSO : ScriptableObject
     public float MagicReserve => magicReserve;
     public int AttackDamage => attackDamage;
     public int Defence => defence;
+    
 }
