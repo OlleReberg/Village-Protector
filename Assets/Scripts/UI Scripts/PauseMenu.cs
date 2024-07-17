@@ -14,4 +14,10 @@ public class PauseMenu : MonoBehaviour
         menuPanel.SetActive(false);
         introPanel.SetActive(true);
     }
+
+    public void StartGame()
+    {
+        //SceneManager.UnloadScene("Menu Scene");
+        SceneManager.LoadScene("Terrain Scene");
+    }
 }
