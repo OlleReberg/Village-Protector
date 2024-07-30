@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 95.08683, g: 91.95545, b: 90.09318, a: 1}
+  m_IndirectSpecularColor: {r: 95.13949, g: 92.00646, b: 90.149345, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4325,6 +4325,10 @@ PrefabInstance:
       propertyPath: explosion
       value: 
       objectReference: {fileID: 1388473929}
+    - target: {fileID: 2048825306430132154, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 2146765521}
     - target: {fileID: 2187098346172577061, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -4373,6 +4377,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2834716744748945602, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      propertyPath: playerstatsSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 3ffd338736aed9b46a3fb0ebe9f15bcf, type: 2}
     - target: {fileID: 3270389875402334506, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
       propertyPath: m_Name
       value: Player
@@ -4425,7 +4433,8 @@ PrefabInstance:
       propertyPath: attackCombo.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: faa29e6aa76e78e409fb320e39b0ee0b, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1907610302652543149, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2187098346172577061, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
