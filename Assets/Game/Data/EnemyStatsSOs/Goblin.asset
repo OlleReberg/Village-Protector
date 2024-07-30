@@ -16,7 +16,10 @@ MonoBehaviour:
   attackRange: 5
   attackSpeed: 5
   attackDamage: 5
-  armor: 1
+  physRes: 10
+  fireRes: 10
+  darkRes: 10
+  lightningRes: 10
   abilityCooldown: 5
   standardAttackName: Attack
   uniqueAbilityName: Bleh

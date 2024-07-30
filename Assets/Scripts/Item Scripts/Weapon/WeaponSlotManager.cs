@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Item_Scripts;
 using UnityEngine;
-using UnityEngine.VFX;
 
 public class WeaponSlotManager : MonoBehaviour
 {

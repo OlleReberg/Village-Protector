@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 namespace Item_Scripts
 {
     [CreateAssetMenu(fileName = "New Item", menuName = "Item/WeaponItem")]

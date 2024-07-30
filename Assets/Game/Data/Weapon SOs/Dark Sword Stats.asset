@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d366ce8b5843ab4fa18242e10254e89, type: 3}
   m_Name: Dark Sword Stats
   m_EditorClassIdentifier: 
-  damage: 15
-  fire: 0
+  physical: 10
+  fire: 5
   lightning: 0
-  dark: 15
+  dark: 0

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 95.14033, g: 91.99981, b: 90.15533, a: 1}
+  m_IndirectSpecularColor: {r: 95.08683, g: 91.95545, b: 90.09318, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2289,6 +2289,10 @@ PrefabInstance:
       propertyPath: attackSpeed
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8787747391145333800, guid: 27fa8a9db3fbbe64c9b13b6534cac85b, type: 3}
+      propertyPath: weaponStats
+      value: 
+      objectReference: {fileID: 11400000, guid: 764a6de1deaec604184663173f21f38a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4305,6 +4309,10 @@ PrefabInstance:
       propertyPath: owningCharacter
       value: 
       objectReference: {fileID: 184161196}
+    - target: {fileID: 1907610302652543149, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2048825306430132154, guid: 7d85d8488c2feaa41bee6b04acdfe919, type: 3}
       propertyPath: delay
       value: 0.9
@@ -6111,7 +6119,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponStats: {fileID: 11400000, guid: 87703bdf7b8561d4da75270d0de09fc7, type: 2}
   trail: {fileID: 1388473929}
-  owningCharacter: {fileID: 1383541256}
   enableCollider: 1
   attackSpeed: 0.5
 --- !u!65 &1653849390

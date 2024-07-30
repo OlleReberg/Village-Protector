@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 4578.2183, g: 2948.9475, b: 2218.1174, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.98039216}
+  m_Color: {r: 0.58668566, g: 0.754717, b: 0.7327581, a: 0.98039216}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -480,9 +480,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_NormalColor: {r: 0.7264151, g: 0.44724125, b: 0.21518332, a: 1}
+    m_HighlightedColor: {r: 0.34117648, g: 0.14901961, b: 0.050980393, a: 1}
+    m_PressedColor: {r: 0.24705882, g: 0.105882354, b: 0.03137255, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -535,8 +535,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ce51b548becb7824caac2b4b5bba6132, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -928,14 +928,16 @@ MonoBehaviour:
   m_text: "Hi! \nToday you'll be playing as Jimmy.\n\nJimmy is just a regular guy
     who got hit with hard times and was laid off. \nHe is now stuck on his couch
     while unemployed.\nHowever, one faithful day, something completely unexpected
-    happened!\n\nJimmy was transported back in time, for reasons we won't explain
-    (our writers could not manage to come up with a reason that could satisfy you,
-    the player).\n\n\nJimmy now finds himself in a fantastical realm filled with
-    monsters, magic, and mischief.\nIn this realm of high fantasy and wonder, a small
-    village lie.\nThis village is filled with idiots, incapable of taking care of
-    themselves.\n\n\nThus, as Jimmy, you now find yourself bestowed with the duty
-    of helping these poor suckers. \nProtect them, care for them, and grow their
-    village to prosperity!\n\nGood luck wanker, and godspeed!"
+    happened!\n\nOut of the blue, Jimmy was transported back in time, because, because
+    of...reasons. Okay. You try to come up with a good reason for why some random
+    guy gets yeeted into another time and dimension where frickin' magic exists!
+    No? Can't think of one? Thought so.\nSo anyway, Jimmy was yeeted through time
+    and space because of reasons.\n\nNow Jimmy finds himself in a fantastical realm
+    filled with monsters, magic, and mischief.\nIn this realm of high fantasy and
+    wonder, a small village lie.\nThis village is filled with idiots, incapable of
+    taking care of themselves.\n\n\nThus, as Jimmy, you now find yourself bestowed
+    with the duty of helping these poor suckers. \nProtect them, care for them, and
+    grow their village to prosperity!\n\nGood luck, and godspeed!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -945,14 +947,14 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4284021759
-  m_fontColor: {r: 1, g: 0.985778, b: 0.3433962, a: 1}
-  m_enableVertexGradient: 0
+  m_fontColor: {r: 0.9716981, g: 0.95180523, b: 0.1411712, a: 1}
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
     topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 0.0754717, g: 0.06009256, b: 0.06009256, a: 1}
+    bottomRight: {r: 0.8666667, g: 0.32588834, b: 0.027450979, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -966,9 +968,9 @@ MonoBehaviour:
   m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 24
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 32
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -998,7 +1000,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 5, y: 0, z: 5, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1081,13 +1083,13 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4283494655
   m_fontColor: {r: 1, g: 0.9407112, b: 0.3150943, a: 1}
-  m_enableVertexGradient: 0
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+    topLeft: {r: 1, g: 0.91437024, b: 0, a: 1}
+    topRight: {r: 1, g: 0.9991705, b: 0.05098039, a: 1}
+    bottomLeft: {r: 0, g: 0, b: 0, a: 1}
+    bottomRight: {r: 1, g: 0.19086514, b: 0, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -1216,13 +1218,13 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4283494655
   m_fontColor: {r: 1, g: 0.9407112, b: 0.3150943, a: 1}
-  m_enableVertexGradient: 0
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+    topLeft: {r: 1, g: 0.91437024, b: 0, a: 1}
+    topRight: {r: 1, g: 0.9991705, b: 0.05098039, a: 1}
+    bottomLeft: {r: 0, g: 0, b: 0, a: 1}
+    bottomRight: {r: 1, g: 0.19086514, b: 0, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -1521,9 +1523,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_NormalColor: {r: 0.7264151, g: 0.44724125, b: 0.21518332, a: 1}
+    m_HighlightedColor: {r: 0.34117648, g: 0.14901961, b: 0.050980393, a: 1}
+    m_PressedColor: {r: 0.24528301, g: 0.10493009, b: 0.03332145, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1564,8 +1566,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ce51b548becb7824caac2b4b5bba6132, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1651,13 +1653,13 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4283494655
   m_fontColor: {r: 1, g: 0.9407112, b: 0.3150943, a: 1}
-  m_enableVertexGradient: 0
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+    topLeft: {r: 1, g: 0.91437024, b: 0, a: 1}
+    topRight: {r: 1, g: 0.9991705, b: 0.05098039, a: 1}
+    bottomLeft: {r: 0, g: 0, b: 0, a: 1}
+    bottomRight: {r: 1, g: 0.19086514, b: 0, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -1778,9 +1780,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_NormalColor: {r: 0.7264151, g: 0.44724125, b: 0.21518332, a: 1}
+    m_HighlightedColor: {r: 0.33962262, g: 0.14853221, b: 0.049341388, a: 1}
+    m_PressedColor: {r: 0.24705882, g: 0.105882354, b: 0.03137255, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1821,8 +1823,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ce51b548becb7824caac2b4b5bba6132, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

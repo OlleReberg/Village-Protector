@@ -1,73 +1,127 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.VFX;
 
 public class Weapon : MonoBehaviour
 {
     private BoxCollider damageCollider; // The BoxCollider component attached to the weapon
     [SerializeField] private WeaponstatsSO weaponStats; // Reference to a ScriptableObject that contains weapon stats
-    public ParticleSystem trail; //Attached particle system to weapon
-    private List<Collider> hitObject = new List<Collider>();
-    [SerializeField] private GameObject owningCharacter;
-    [SerializeField] private bool enableCollider;
-    [SerializeField] private float attackSpeed;
+    public ParticleSystem trail; // Attached particle system to the weapon
+    private List<Collider> hitObject = new List<Collider>(); // List to track hit objects during an attack
+    [SerializeField] private bool enableCollider; // Flag to enable/disable the weapon collider
+    [SerializeField] private float attackSpeed; // Speed of weapon attacks
+
+    private IDamageable owningCharacterDamageable; // Reference to IDamageable component on the owning character
+    private GameObject owningCharacter; // Reference to the owning character's GameObject
+
     private void Awake()
     {
-        damageCollider = GetComponent<BoxCollider>(); // Assign the BoxCollider component to the damageCollider variable
+        // Assign the BoxCollider component to the damageCollider variable
+        damageCollider = GetComponent<BoxCollider>();
         damageCollider.gameObject.SetActive(true); // Ensure the collider object is active
         damageCollider.isTrigger = true; // Set the collider to be a trigger to detect collisions without affecting physics
-        damageCollider.enabled = enableCollider; // Disable the collider by default until the attack is initiated
+        damageCollider.enabled = enableCollider; // Enable/Disable the collider based on enableCollider flag
+    }
+
+    public void EquipWeapon(GameObject owner)
+    {
+        // Equip the weapon to a character and set the owningCharacterDamageable reference
+        owningCharacter = owner;
+        owningCharacterDamageable = owner.GetComponent<IDamageable>();
+        if (owningCharacterDamageable == null)
+        {
+            Debug.LogError("The owner does not have an IDamageable component.");
+        }
     }
 
     public void EnableDamageCollider()
     {
-        damageCollider.enabled = true; // Enable the damage collider to detect collisions with enemies
+        // Enable the damage collider to detect collisions with enemies
+        damageCollider.enabled = true;
     }
 
     public void DisableDamageCollider()
     {
-        damageCollider.enabled = false; // Disable the damage collider to prevent further collisions with enemies
-        hitObject.Clear();
+        // Disable the damage collider to prevent further collisions with enemies
+        damageCollider.enabled = false;
+        hitObject.Clear(); // Clear the list of hit objects
+    }
+
+    public float CalculateFinalDamage(IDamageable target)
+    {
+        // Ensure target is not null
+        if (target == null)
+        {
+            Debug.LogError("Target is null in CalculateFinalDamage.");
+            return 0;
+        }
+
+        // Get the attacker stats
+        if (owningCharacterDamageable != null)
+        {
+            owningCharacterDamageable.GetOwnerStats(out float baseDamage, out float maxHealth,
+                out float physRes, out float fireRes, out float darkRes, out float lightningRes);
+
+            // Calculate weapon damage
+            float physicalDamage = weaponStats.Physical + baseDamage;
+            float fireDamage = weaponStats.Fire;
+            float darkDamage = weaponStats.Dark;
+            float lightningDamage = weaponStats.Lightning;
+
+            // Get target's resistances
+            target.GetOwnerStats(out float targetBaseDamage, out float targetMaxHealth,
+                out float targetPhysRes, out float targetFireRes, out float targetDarkRes, out float targetLightningRes);
+
+            // Calculate damage after resistance
+            float finalPhysicalDamage = physicalDamage * (1 - targetPhysRes / (targetPhysRes + 100));
+            float finalFireDamage = fireDamage * (1 - targetFireRes / (targetFireRes + 100));
+            float finalDarkDamage = darkDamage * (1 - targetDarkRes / (targetDarkRes + 100));
+            float finalLightningDamage = lightningDamage * (1 - targetLightningRes / (targetLightningRes + 100));
+
+            // Sum up the total damage
+            float totalDamage = finalPhysicalDamage + finalFireDamage + finalDarkDamage + finalLightningDamage;
+            return totalDamage;
+        }
+
+        return 0; // Return 0 if owning character does not implement IDamageable
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log(collision.name);
+        // Handle collision with other objects
         if (hitObject.Contains(collision) || collision.gameObject == owningCharacter)
         {
-            return;
+            return; // Ignore if the object is already hit or if it is the owning character
         }
-        hitObject.Add(collision);
+
+        hitObject.Add(collision); // Add the collided object to the hit list
         if (enableCollider)
         {
-            StartCoroutine(AttackDelay());
+            StartCoroutine(AttackDelay()); // Delay the next attack
         }
-        
-        var enemy = collision.GetComponent<IDamageable>(); // Get the Enemy component from the collided object, if present
-        var weaponDamage = weaponStats.Damage; // Calculate the total damage of the weapon
-        
-        if (enemy != null)
+
+        var target = collision.GetComponent<IDamageable>(); // Get the IDamageable component from the collided object, if present
+        if (target != null)
         {
-            enemy.TakeDamage(weaponDamage); // Reduce the enemy's current health by the weapon's damage value
-            Debug.Log("Dealing " + weaponDamage + " damage to the enemy"); // Log the damage dealt to the enemy
+            // Calculate the damage based on weapon stats and target resistances
+            float weaponDamage = CalculateFinalDamage(target);
+            target.TakeDamage(weaponDamage); // Deal damage to the target
+            Debug.Log("Dealing " + weaponDamage + " damage to the target"); // Log the damage dealt
         }
     }
 
     IEnumerator AttackDelay()
     {
+        // Delay between attacks
         yield return new WaitForSeconds(attackSpeed);
-        hitObject.Clear();
-    }
-
-    public void EquipWeapon(GameObject owner)
-    {
-        owningCharacter = owner;
+        hitObject.Clear(); // Clear the list of hit objects after the delay
     }
 }
+
+
+
+
+
 
 
 

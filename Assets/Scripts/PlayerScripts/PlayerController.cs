@@ -1,10 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using PlayerScripts;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamageable
@@ -27,11 +22,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     private CharacterController characterController; // Reference to the character controller
     private PlayerCombatController playerCombatController; // Reference to the combat controller
     private PlayerState playerState = PlayerState.Idle; // Current state of the player
-    public PlayerStats playerStats; // Get player stats
-    [SerializeField] private ParticleSystem explosion; //grab explosion particle system
-    [SerializeField] private float delay;
-
-
+    public PlayerStats playerStats; // Player stats component
+    [SerializeField] private ParticleSystem explosion; // Reference to explosion particle system
+    [SerializeField] private float delay; // Delay before explosion
 
     private void Awake()
     {
@@ -49,14 +42,12 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        //Debug.Log($"PlayerState: {playerState}");
-
         // Handle player actions based on the current state
         switch (playerState)
         {
             case PlayerState.Idle:
             case PlayerState.Moving:
-                HandleMovement();
+                HandleMovement(); // Handle movement in idle or moving state
                 break;
             case PlayerState.Attacking:
                 // Prevent movement while attacking
@@ -127,8 +118,9 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void Jump()
     {
-        ySpeed = jumpPower; // Apply jump power to vertical speed
-        characterController.Move(Vector3.up * (jumpPower * Time.deltaTime)); // Move the player upwards
+        // Apply jump power to vertical speed and move the player upwards
+        ySpeed = jumpPower; 
+        characterController.Move(Vector3.up * (jumpPower * Time.deltaTime)); 
     }
 
     private Vector3 MovePlayer(float h, float v)
@@ -171,34 +163,47 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void HandleAttackEnd()
     {
+        // Reset player state to idle when attack ends
         Debug.Log("Attack Ended");
-        //Reset player state to movement state when attack ends
         playerState = PlayerState.Idle;
-        
     }
 
     public void TakeDamage(float damageAmount)
     {
-        playerStats.currentHealth = Mathf.Clamp(playerStats.currentHealth - damageAmount, 0, playerStats.currentHealth); // Reduce the enemy's current health by the weapon's damage value
-        animator.SetTrigger("damage"); // Trigger the "damage" animation on the enemy's animator component
+        // Reduce player's health and trigger damage animation
+        playerStats.currentHealth = Mathf.Clamp(playerStats.currentHealth - damageAmount, 0, playerStats.currentHealth); 
+        animator.SetTrigger("damage"); // Trigger the "damage" animation
 
         if (playerStats.currentHealth == 0)
         {
+            // Handle player death
             animator.SetTrigger("death");
             explosion.gameObject.SetActive(true);
             StartCoroutine(Die());
         }
     }
-
-    IEnumerator Die()
+    
+    public void GetOwnerStats(out float baseDamage, out float maxHealth, out float physRes,
+        out float fireRes, out float darkRes, out float lightningRes)
     {
+        // Get player's stats and assign to out parameters
+        var stats = playerStats;
+        baseDamage = stats.attackDamage;
+        maxHealth = stats.currentHealth;
+        physRes = stats.playerstatsSO.PhysRes;
+        fireRes = stats.playerstatsSO.FireRes;
+        darkRes = stats.playerstatsSO.DarkRes;
+        lightningRes = stats.playerstatsSO.LightningRes;
+    }
+
+    private IEnumerator Die()
+    {
+        // Handle player death with a delay
         yield return new WaitForSeconds(delay);
         gameObject.SetActive(false);
-        
     }
-    
-    
 }
+
 
 
 

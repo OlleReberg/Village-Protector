@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using PlayerScripts;
 using UnityEngine;
 
@@ -30,7 +28,7 @@ public class EnemyWeapon : MonoBehaviour
     {
         var enemy = collision.GetComponent<PlayerController>(); // Get the Enemy component from the collided object, if present
         var enemyStats = collision.GetComponent<PlayerStats>();
-        var weaponDamage = weaponStats.Damage; // Calculate the total damage of the weapon
+        var weaponDamage = weaponStats.Physical; // Calculate the total damage of the weapon
         
         if (enemy != null)
         {

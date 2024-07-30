@@ -1,13 +1,6 @@
 using PlayerScripts;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-
-using UnityEngine;
-using TMPro;
-
-using UnityEngine;
-using TMPro;
 
 public class PlayerStatsUI : MonoBehaviour
 {
@@ -60,7 +53,7 @@ public class PlayerStatsUI : MonoBehaviour
         statsText.text = $"HP: {playerStats.currentHealth}\nMP: {playerStats.currentMana}\nAtt: {playerStats.attackDamage}\nDef: {playerStats.defence}";
     }
 
-    public void ShowStatsGains(float healthGain, float manaGain, int attackGain, int defenceGain)
+    public void ShowStatsGains(float healthGain, float manaGain, float attackGain, float defenceGain)
     {
         // Show the stat gains in the statsGainsText
         statsGainsText.text = $"+{healthGain}\n+{manaGain}\n+{attackGain}\n+{defenceGain}";
@@ -80,7 +73,7 @@ public class PlayerStatsUI : MonoBehaviour
         int defenceGain = int.Parse(lines[3].Trim().Split('+')[1]);
 
         // Apply the gains to the player stats
-        playerStats.ApplyStatsGains(healthGain, manaGain, attackGain, defenceGain);
+        playerStats.ApplyStatsGains(healthGain, manaGain, attackGain, defenceGain, combatRatingGain: 1);
 
         // Update the stats UI
         UpdateStatsUI();

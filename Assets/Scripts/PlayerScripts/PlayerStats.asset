@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   maxHealth: 50
-  attackDamage: 5
-  defence: 5
   magicReserve: 50
+  attackDamage: 12
+  physRes: 10
+  fireRes: 10
+  darkRes: 10
+  lightningRes: 10
+  combatRating: 0
