@@ -60,7 +60,7 @@ public class PlayerPickupHandler : MonoBehaviour
 
                 // Set the item icon and quantity in the UI slot using 'item'
                 slotUI.itemIconImage.sprite = item.ItemIcon;
-                slotUI.quantityText.text = "x" + item.Quantity.ToString();
+                slotUI.quantityText.text = "x" + item.Quantity;
             }
         }
     }

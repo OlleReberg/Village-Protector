@@ -23,5 +23,4 @@ public class PlayerStatsSO : ScriptableObject
     public float DarkRes => darkRes;
     public float LightningRes => lightningRes;
     public int CombatRating => combatRating;
-
 }

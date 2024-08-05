@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a098a876d3d83854b99c8ea3d527432f, type: 3}
+  m_Script: {fileID: 11500000, guid: a513d64d5a6843acb60017621c52f83c, type: 3}
   m_Name: EnergyDrink
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 3ab43aaa6a4781a47904665cdd96ca83, type: 3}
   quantity: 1
-  itemName: Energy Potion
-  itemDescription: '"Energy Potion gives you featherfaaaaall" (for legal purposes
-    this is not to be taken literally. Awesome Fantasy potions Inc are not liable
-    for any damages occuring as a result of people believing this drink can make
-    them fly)'
+  itemName: Energy Drink
+  itemDescription: Lot's of magical energy coursing through your veins now baby!
+  itemType: 1
+  effectType: 1
+  effectPower: 50
+  effectDuration: 0

@@ -34,14 +34,10 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         // Implement drop logic (e.g., check where the item is dropped and take appropriate action)
     }
     // Implement IPointerEnterHandler interface to handle mouse enter event
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(ItemSO item)
     {
-        // Check if the slot has an item
-        if (itemSO != null && playerInventory != null && tooltipWindow != null)
-        {
-            // Show the tooltip window with the item information
-            tooltipWindow.ShowTooltip(itemSO);
-        }
+        Debug.Log("Open Sesame");
+        item.OnRightClick();
     }
 
     // Implement IPointerExitHandler interface to handle mouse exit event
@@ -51,6 +47,14 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (tooltipWindow != null)
         {
             tooltipWindow.HideTooltip();
+        }
+    }
+    
+    public virtual void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            Debug.Log("Right Mouse Button Clicked on: " + name);
         }
     }
 }

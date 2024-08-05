@@ -1,5 +1,6 @@
 using Item_Scripts;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class WeaponSlotManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class WeaponSlotManager : MonoBehaviour
     private Weapon leftHandDamageCollider;
     private Weapon rightHandDamageCollider;
     private Weapon weaponTrail;
-    //public VisualEffect slashVFX;
+    // public VisualEffect slashVFX;
 
     private void Awake()
     {
@@ -46,8 +47,8 @@ public class WeaponSlotManager : MonoBehaviour
 
     public void WeaponslashVFX()
     {
-        //slashVFX.gameObject.SetActive(true);
-        //slashVFX.Play();
+        // slashVFX.gameObject.SetActive(true);
+        // slashVFX.Play();
     }
     
     #region Handle Weapon's Damage Collider

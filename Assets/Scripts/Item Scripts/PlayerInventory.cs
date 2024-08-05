@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using Item_Scripts;
+using PlayerScripts;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +14,8 @@ public class PlayerInventory : MonoBehaviour
     private WeaponSlotManager weaponSlotManager;
     public WeaponItem rightWeapon;
     public WeaponItem leftWeapon;
-    
+    private PlayerStats playerStats;
+
     private TooltipWindow tooltipWindow;
 
     private void Awake()
@@ -35,7 +38,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void Update()
     {
-        //UpdateUI();
+        UpdateUI();
     }
 
     public void AddItemToInventory(ItemSO item)
@@ -109,7 +112,7 @@ public class PlayerInventory : MonoBehaviour
 
             // Set the item icon and quantity in the newSlot UI using 'item'
             slotUI.itemIconImage.sprite = item.ItemIcon;
-            slotUI.quantityText.text = "x" + item.Quantity.ToString();
+            slotUI.quantityText.text = "x" + item.Quantity;
             
             // Adjust image aspect ratio to fit within the UISlot
             AdjustImageAspect(slotUI.itemIconImage);
@@ -136,5 +139,88 @@ public class PlayerInventory : MonoBehaviour
 
         // Add the item to the player's inventory
         AddItemToInventory(item);
+    }
+    
+    public void SetupDropdownMenu(ItemSO item, Dropdown dropdown)
+    {
+        dropdown.options.Clear();
+        if (item.Type == ItemSO.ItemType.Equipable) // Use == for enum comparison
+        {
+            dropdown.options.Add(new Dropdown.OptionData("Equip"));
+        }
+        if (item.Type == ItemSO.ItemType.Consumable) // Use == for enum comparison
+        {
+            dropdown.options.Add(new Dropdown.OptionData("Consume"));
+        }
+        dropdown.options.Add(new Dropdown.OptionData("More Info"));
+        dropdown.options.Add(new Dropdown.OptionData("Discard"));
+
+        dropdown.onValueChanged.AddListener((index) => {
+            switch (dropdown.options[index].text)
+            {
+                case "Equip":
+                    EquipItem(item);
+                    break;
+                case "Consume":
+                    ConsumeItem(item);
+                    break;
+                case "Discard":
+                    RemoveItemFromInventory(item);
+                    break;
+            }
+        });
+    }
+    public void HandleItemUse(ItemSO item)
+    {
+        switch (item.Type)
+        {
+            case ItemSO.ItemType.Equipable:
+                EquipItem(item);
+                break;
+            case ItemSO.ItemType.Consumable:
+                ConsumeItem(item);
+                RemoveItemFromInventory(item);  // Remove item after consumption
+                break;
+            // Assuming KeyItem is also an ItemType
+            case ItemSO.ItemType.KeyItem:
+                UseKeyItem(item);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(item.Type), "Unsupported item type");
+        }
+    }
+    public void EquipItem(ItemSO item)
+    {
+        if (item.Type == ItemSO.ItemType.Equipable)
+        {
+            EquipmentManager.Instance.Equip(item);
+        }
+        else
+        {
+            Debug.LogError("Attempted to equip an item that is not equipable.");
+        }
+    }
+    public void ConsumeItem(ItemSO item)
+    {
+        if (item is ConsumableItemSO consumableItem)
+        {
+            consumableItem.Consume(playerStats);  // Assuming Consume method modifies PlayerStats
+            RemoveItemFromInventory(item);  // Typically, you consume an item once used
+        }
+        else
+        {
+            Debug.LogError("Attempted to consume an item that is not consumable.");
+        }
+    }
+    public void UseKeyItem(ItemSO item)
+    {
+        if (item.Type == ItemSO.ItemType.KeyItem)
+        {
+            KeyItemManager.Instance.UseKeyItem(item);
+        }
+        else
+        {
+            Debug.LogError("Attempted to use a non-key item as a key.");
+        }
     }
 }

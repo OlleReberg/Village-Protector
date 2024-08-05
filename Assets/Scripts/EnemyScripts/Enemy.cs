@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour, IDamageable
     private float attackCooldown = 0f; // The time until the enemy can attack again
     private float abilityCooldown = 0f; // The time until the enemy can use their unique ability again
     private GameObject player; // The player object that the enemy will be attacking
-    private bool isAttacking = false; // Whether or not the enemy is currently attacking the player
     private Weapon weapon; // Reference to the weapon component
 
     private void Awake()

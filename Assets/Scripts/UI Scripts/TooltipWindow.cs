@@ -1,6 +1,7 @@
 using Item_Scripts;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class TooltipWindow : MonoBehaviour
@@ -24,6 +25,7 @@ public class TooltipWindow : MonoBehaviour
 
     public void ShowTooltip(ItemSO item)
     {
+        // Update the tooltip UI with item details
         itemNameText.text = item.ItemName;
         itemDescriptionText.text = item.ItemDescription;
         itemIconImage.sprite = item.ItemIcon;
@@ -42,14 +44,13 @@ public class TooltipWindow : MonoBehaviour
         // Show the tooltip
         gameObject.SetActive(true);
         isTooltipActive = true;
-        
+    
         // Trigger the OnItemHovered event
-        if (OnItemHovered != null)
-        {
-            OnItemHovered(item);
-            Debug.Log("Hovering " + item.ItemName);
-        }
+        OnItemHovered?.Invoke(item); // Use null-conditional operator to invoke the event if there are subscribers
+        Debug.Log("Hovering " + item.ItemName);
     }
+    
+    
 
     public void HideTooltip()
     {
