@@ -55649,21 +55649,14 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.06666667
-    functionName: OpenRightWeaponCollider
+    functionName: EnableWeaponCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.1
-    functionName: CloseRightWeaponCollider
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.4333333
-    functionName: DisableWeaponTrail
+    functionName: DisableWeaponCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
