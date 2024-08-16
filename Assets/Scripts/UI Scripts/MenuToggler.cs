@@ -1,4 +1,7 @@
+using UI_Scripts;
 using UnityEngine;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 public class MenuToggler : MonoBehaviour
 {
@@ -68,6 +71,7 @@ public class MenuToggler : MonoBehaviour
             {
                 PauseGame();
                 inventoryPanel.SetActive(true);
+                inventoryPanel.GetComponent<PlayerInventoryUI>().SetUpUI();
             }
             // If the game is already paused, resume it and hide the inventory panel
             else if (isPaused)

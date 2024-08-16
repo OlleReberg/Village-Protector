@@ -1,0 +1,46 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UIElements;
+
+public class MainMenuEvents : MonoBehaviour
+{
+     private UIDocument document;
+     private Button button;
+     private List<Button> menuButtons = new List<Button>();
+     private AudioSource audioSource;
+
+     private void Awake()
+     {
+          audioSource = GetComponent<AudioSource>();
+          document = GetComponent<UIDocument>();
+
+          button = document.rootVisualElement.Q("StartGameButton") as Button;
+          button.RegisterCallback<ClickEvent>(OnPlayGameClick);
+          menuButtons = document.rootVisualElement.Query<Button>().ToList();
+          for (int i = 0; i < menuButtons.Count; i++)
+          {
+               menuButtons[i].RegisterCallback<ClickEvent>(OnAllButtonsClick);
+          }
+     }
+
+     private void OnAllButtonsClick(ClickEvent evt)
+     {
+          audioSource.Play();
+     }
+
+     private void OnPlayGameClick(ClickEvent evt)
+     {
+          Debug.Log("pressed start");
+     }
+
+     private void OnDisable()
+     {
+          button.UnregisterCallback<ClickEvent>(OnPlayGameClick);
+          for (int i = 0; i < menuButtons.Count; i++)
+          {
+               menuButtons[i].UnregisterCallback<ClickEvent>(OnAllButtonsClick);
+          }
+     }
+}

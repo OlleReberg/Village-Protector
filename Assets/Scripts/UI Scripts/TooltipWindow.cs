@@ -1,70 +1,63 @@
-using Item_Scripts;
-using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Item_Scripts;
 
 public class TooltipWindow : MonoBehaviour
 {
-    public RectTransform contentPanel;
-    public TextMeshProUGUI itemNameText;
-    public TextMeshProUGUI itemDescriptionText;
-    public Image itemIconImage;
+    private VisualElement tooltipElement;
+    private Label itemNameLabel;
+    private Label itemDescriptionLabel;
+    private VisualElement itemIconElement;
 
-    private RectTransform rectTransform;
-    private bool isTooltipActive;
-    
-    public delegate void ItemHoveredEventHandler(ItemSO item);
-    public static event ItemHoveredEventHandler OnItemHovered;
-
-    private void Awake()
+    void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();
-        HideTooltip();
+        var uiDocument = GetComponent<UIDocument>();
+        var root = uiDocument.rootVisualElement;
+
+        // Ensure names match your UXML file
+        tooltipElement = root.Q<VisualElement>("Tooltip");
+        itemNameLabel = tooltipElement?.Q<Label>("ItemNameLabel");
+        itemDescriptionLabel = tooltipElement?.Q<Label>("ItemDescriptionLabel");
+        itemIconElement = tooltipElement?.Q<VisualElement>("ItemIconElement");
+
+        if (tooltipElement == null || itemNameLabel == null || itemDescriptionLabel == null || itemIconElement == null)
+        {
+            Debug.LogError("TooltipWindow: Failed to find one or more UI elements. Please check the UXML file and element names.");
+            return;
+        }
+
+        HideTooltip();  // Start hidden
     }
 
     public void ShowTooltip(ItemSO item)
     {
-        // Update the tooltip UI with item details
-        itemNameText.text = item.ItemName;
-        itemDescriptionText.text = item.ItemDescription;
-        itemIconImage.sprite = item.ItemIcon;
+        if (tooltipElement == null) return;
 
-        // Update the layout of the content panel to fit the content
-        LayoutRebuilder.ForceRebuildLayoutImmediate(contentPanel);
-
-        // Resize the tooltip window to fit the content
-        Vector2 contentSize = contentPanel.sizeDelta;
-        Vector2 windowSize = new Vector2(contentSize.x, contentSize.y + 20f); // Add a small padding
-        rectTransform.sizeDelta = windowSize;
-
-        // Move the tooltip to the mouse position
-        rectTransform.position = Input.mousePosition;
-
-        // Show the tooltip
-        gameObject.SetActive(true);
-        isTooltipActive = true;
-    
-        // Trigger the OnItemHovered event
-        OnItemHovered?.Invoke(item); // Use null-conditional operator to invoke the event if there are subscribers
-        Debug.Log("Hovering " + item.ItemName);
+        itemNameLabel.text = item.ItemName;
+        itemDescriptionLabel.text = item.ItemDescription;
+        if (item.ItemIcon != null)
+        {
+            itemIconElement.style.backgroundImage = new StyleBackground(item.ItemIcon);
+        }
+        tooltipElement.style.display = DisplayStyle.Flex;  // Show the tooltip
     }
-    
-    
 
     public void HideTooltip()
     {
-        // Hide the tooltip
-        gameObject.SetActive(false);
-        isTooltipActive = false;
-    }
-
-    private void Update()
-    {
-        // If the tooltip is active, move it with the mouse
-        if (isTooltipActive)
+        if (tooltipElement != null)
         {
-            rectTransform.position = Input.mousePosition;
+            tooltipElement.style.display = DisplayStyle.None;  // Hide the tooltip
         }
     }
+
+    public void UpdateTooltipPosition(Vector2 position)
+    {
+        if (tooltipElement == null) return;
+
+        tooltipElement.style.left = position.x;
+        tooltipElement.style.top = position.y;
+    }
 }
+
+
+

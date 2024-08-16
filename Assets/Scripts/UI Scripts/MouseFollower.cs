@@ -1,36 +1,43 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UI_Scripts;
 using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class MouseFollower : MonoBehaviour
 {
-    [SerializeField] private Canvas canvas;
-    
+    private VisualElement rootElement;
+    private VisualElement itemIconElement;
+    private Label quantityLabel;
 
-    public void Awake()
+    private void Start()
     {
-        canvas = transform.root.GetComponent<Canvas>();
-        
+        var uiDocument = GetComponent<UIDocument>();
+        rootElement = uiDocument.rootVisualElement;
+
+        // Assume itemIconElement and quantityLabel are predefined in the UXML
+        itemIconElement = rootElement.Q<VisualElement>("ItemIcon");
+        quantityLabel = rootElement.Q<Label>("QuantityLabel");
     }
 
     public void SetData(Sprite sprite, int quantity)
     {
-        
+        // Convert the Sprite to a Texture2D and set it as a background
+        itemIconElement.style.backgroundImage = new StyleBackground(sprite.texture);
+        quantityLabel.text = quantity > 1 ? "x" + quantity : "";
+        Toggle(true); // Show the follower
     }
 
-    private void Update()
+    public void Update()
     {
-        Vector2 position;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform) canvas.transform,
-            Input.mousePosition, canvas.worldCamera, out position);
-        transform.position = canvas.transform.TransformPoint(position);
+        // Update position to follow the mouse
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+        rootElement.transform.position = new Vector3(mousePosition.x, mousePosition.y, 0);
     }
 
     public void Toggle(bool val)
     {
-        Debug.Log($"selected {val}");
-        gameObject.SetActive(val);
+        rootElement.style.display = val ? DisplayStyle.Flex : DisplayStyle.None;
     }
 }
+
+

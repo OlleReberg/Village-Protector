@@ -1,27 +1,32 @@
-using Item_Scripts;
 using UnityEngine;
+using PlayerScripts;  // Assuming PlayerInventory is under this namespace
+using UI_Scripts;
+using UnityEngine.UIElements; // Assuming PlayerInventoryUI is under this namespace
 
 public class PlayerPickupHandler : MonoBehaviour
 {
-    public PlayerInventory playerInventory; // Reference to the player's inventory script
-    public InventorySlotUI[] inventorySlots; // Array to store the inventory slot UI components
+    public PlayerInventory playerInventory; // Reference to the player's inventory script for backend operations
+    public UIDocument uiDocument; // Assign in Inspector
+    private PlayerInventoryUI playerInventoryUI;
 
     private void Start()
     {
         // Find the PlayerInventory script and assign it to playerInventory
         playerInventory = FindObjectOfType<PlayerInventory>();
 
-        // Check if playerInventory is found, otherwise output a warning message
+        // Attempt to get the PlayerInventoryUI script from the UIDocument
+        playerInventoryUI = uiDocument.GetComponent<PlayerInventoryUI>();
+
+        if (playerInventoryUI == null)
+        {
+            Debug.LogError("PlayerPickupHandler: PlayerInventoryUI script not found.");
+        }
+
+        // Check if playerInventory and playerInventoryUI are found, otherwise output warning messages
         if (playerInventory == null)
         {
             Debug.LogWarning("PlayerInventory script not found.");
         }
-    }
-
-    public void PopulateInventorySlots(InventorySlotUI[] slots)
-    {
-        // Store the references to the inventory slot UI components
-        inventorySlots = slots;
     }
 
     private void OnEnable()
@@ -41,28 +46,16 @@ public class PlayerPickupHandler : MonoBehaviour
         // Perform any actions related to picking up the item (e.g., add it to the player's inventory)
         if (playerInventory != null)
         {
-            playerInventory.PickupLoot(FindObjectOfType<Loot>().item);
+            playerInventory.AddItemToInventory(FindObjectOfType<Loot>().item);
 
             // Update the inventory UI after picking up the item
-            UpdateInventoryUI();
-        }
-    }
-
-    private void UpdateInventoryUI()
-    {
-        // Loop through the player's inventory and update the UI slots accordingly
-        for (int i = 0; i < playerInventory.playerInventory.Count; i++)
-        {
-            if (i < inventorySlots.Length)
+            if (playerInventoryUI != null)
             {
-                InventorySlotUI slotUI = inventorySlots[i];
-                ItemSO item = playerInventory.playerInventory[i];
-
-                // Set the item icon and quantity in the UI slot using 'item'
-                slotUI.itemIconImage.sprite = item.ItemIcon;
-                slotUI.quantityText.text = "x" + item.Quantity;
+                playerInventoryUI.UpdateUI();
             }
         }
     }
 }
+
+
 

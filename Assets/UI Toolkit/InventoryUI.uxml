@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/InventoryStyleSheet.uss?fileID=7433441132597879392&amp;guid=583866dd6d319384c8ca147bc5208827&amp;type=3#InventoryStyleSheet" />
+    <ui:VisualElement name="InventoryContainer" class="inventory-container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.85); position: relative; background-image: none;">
+        <ui:VisualElement name="InventoryRow" class="inventory-row" style="background-color: rgba(0, 0, 0, 0);">
+            <ui:VisualElement name="InventorySlot" class="inventory-slot2" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                <ui:VisualElement name="ItemContainter" class="item-container">
+                    <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" class="item-quantity" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="DragObject" class="Item-Drag" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+</ui:UXML>

@@ -1,226 +1,63 @@
 using System;
 using System.Collections.Generic;
-using Item_Scripts;
-using PlayerScripts;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Item_Scripts;
 
-public class PlayerInventory : MonoBehaviour
+
+namespace PlayerScripts
 {
-    public List<ItemSO> playerInventory = new List<ItemSO>();
-    private List<IInventoryObserver> inventoryObservers = new List<IInventoryObserver>();
-    public GameObject inventoryPanel;
-    public GameObject inventorySlotPrefab;
-    private WeaponSlotManager weaponSlotManager;
-    public WeaponItem rightWeapon;
-    public WeaponItem leftWeapon;
-    private PlayerStats playerStats;
-
-    private TooltipWindow tooltipWindow;
-
-    private void Awake()
+    public class PlayerInventory : MonoBehaviour
     {
-        weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
-        UpdateUI();
-    }
+        public static int TotalSlots = 35;
+        public static int TotalHorizontal = 6;
+        public List<ItemSO> playerInventory = new List<ItemSO>(); // List to store inventory items
+        private List<IInventoryObserver> inventoryObservers = new List<IInventoryObserver>(); // Observers for inventory changes
 
-    private void Start()
-    {
-        tooltipWindow = FindObjectOfType<TooltipWindow>();
-        if (tooltipWindow != null)
+        public void AddItemToInventory(ItemSO item)
         {
-            // Subscribe to the OnItemHovered event
-            //TooltipWindow.OnItemHovered += OnItemHovered;
-        }
-        weaponSlotManager.LoadWeaponOnSlot(rightWeapon, false);
-        weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true);
-    }
-
-    private void Update()
-    {
-        UpdateUI();
-    }
-
-    public void AddItemToInventory(ItemSO item)
-    {
-        playerInventory.Add(item); // Notify observers (other systems) that an item has been added.
-
-        // Update the UI
-        GameObject newSlot = Instantiate(inventorySlotPrefab, 
-            inventoryPanel.transform); // Set the item icon and other data in the newSlot UI using 'item'
-        
-        InventorySlotUI slotUI = newSlot.GetComponent<InventorySlotUI>();
-
-        // Set the item icon and quantity in the newSlot UI using 'item'
-        slotUI.itemIconImage.sprite = item.ItemIcon;
-        slotUI.quantityText.text = "x" + item.Quantity.ToString();
-        
-        // Adjust image aspect ratio to fit within the UISlot
-        AdjustImageAspect(slotUI.itemIconImage);
-    }
-
-    public void RemoveItemFromInventory(ItemSO item)
-    {
-        playerInventory.Remove(item);
-        // Notify observers (other systems) that an item has been removed.
-        NotifyObserversItemRemoved(item);
-
-        // Update the UI after removing the item
-        UpdateUI();
-    }
-    
-    public void AddObserver(IInventoryObserver observer)
-    {
-        inventoryObservers.Add(observer);
-    }
-
-    public void RemoveObserver(IInventoryObserver observer)
-    {
-        inventoryObservers.Remove(observer);
-    }
-    
-    private void NotifyObserversItemAdded(ItemSO item)
-    {
-        foreach (IInventoryObserver observer in inventoryObservers)
-        {
-            observer.OnItemAddedToInventory(item);
-        }
-    }
-
-    private void NotifyObserversItemRemoved(ItemSO item)
-    {
-        foreach (IInventoryObserver observer in inventoryObservers)
-        {
-            observer.OnItemRemovedFromInventory(item);
-        }
-    }
-    
-    private void UpdateUI()
-    {
-        // Clear existing slots in the UI
-        foreach (Transform child in inventoryPanel.transform)
-        {
-            Destroy(child.gameObject);
+            playerInventory.Add(item);
+            NotifyObserversItemAdded(item);
         }
 
-        // Instantiate inventory slots for each item in the playerInventory
-        foreach (ItemSO item in playerInventory)
+        public void RemoveItemFromInventory(ItemSO item)
         {
-            // Instantiate the inventory slot prefab only once
-            GameObject newSlot = Instantiate(inventorySlotPrefab, inventoryPanel.transform);
-            InventorySlotUI slotUI = newSlot.GetComponent<InventorySlotUI>();
-
-            // Set the item icon and quantity in the newSlot UI using 'item'
-            slotUI.itemIconImage.sprite = item.ItemIcon;
-            slotUI.quantityText.text = "x" + item.Quantity;
-            
-            // Adjust image aspect ratio to fit within the UISlot
-            AdjustImageAspect(slotUI.itemIconImage);
+            playerInventory.Remove(item);
+            NotifyObserversItemRemoved(item);
         }
-    }
-    private void AdjustImageAspect(Image image)
-    {
-        // Get the Image's RectTransform
-        RectTransform imageRectTransform = image.GetComponent<RectTransform>();
 
-        // Get the aspect ratio of the sprite
-        float aspectRatio = (float)image.sprite.texture.width / image.sprite.texture.height;
-
-        // Match the Image's width and height to the UISlot's dimensions
-        imageRectTransform.sizeDelta = new Vector2(imageRectTransform.sizeDelta.y * aspectRatio, imageRectTransform.sizeDelta.y);
-
-        // Set preserveAspect to true programmatically
-        image.preserveAspect = true;
-    }
-    
-    public void PickupLoot(ItemSO item)
-    {
-        // Perform any actions related to picking up the loot (e.g., displaying loot acquisition message, playing sound, etc.)
-
-        // Add the item to the player's inventory
-        AddItemToInventory(item);
-    }
-    
-    public void SetupDropdownMenu(ItemSO item, Dropdown dropdown)
-    {
-        dropdown.options.Clear();
-        if (item.Type == ItemSO.ItemType.Equipable) // Use == for enum comparison
+        public void AddObserver(IInventoryObserver observer)
         {
-            dropdown.options.Add(new Dropdown.OptionData("Equip"));
-        }
-        if (item.Type == ItemSO.ItemType.Consumable) // Use == for enum comparison
-        {
-            dropdown.options.Add(new Dropdown.OptionData("Consume"));
-        }
-        dropdown.options.Add(new Dropdown.OptionData("More Info"));
-        dropdown.options.Add(new Dropdown.OptionData("Discard"));
-
-        dropdown.onValueChanged.AddListener((index) => {
-            switch (dropdown.options[index].text)
+            if (!inventoryObservers.Contains(observer))
             {
-                case "Equip":
-                    EquipItem(item);
-                    break;
-                case "Consume":
-                    ConsumeItem(item);
-                    break;
-                case "Discard":
-                    RemoveItemFromInventory(item);
-                    break;
+                inventoryObservers.Add(observer);
             }
-        });
-    }
-    public void HandleItemUse(ItemSO item)
-    {
-        switch (item.Type)
-        {
-            case ItemSO.ItemType.Equipable:
-                EquipItem(item);
-                break;
-            case ItemSO.ItemType.Consumable:
-                ConsumeItem(item);
-                RemoveItemFromInventory(item);  // Remove item after consumption
-                break;
-            // Assuming KeyItem is also an ItemType
-            case ItemSO.ItemType.KeyItem:
-                UseKeyItem(item);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(item.Type), "Unsupported item type");
         }
-    }
-    public void EquipItem(ItemSO item)
-    {
-        if (item.Type == ItemSO.ItemType.Equipable)
+
+        public void RemoveObserver(IInventoryObserver observer)
         {
-            EquipmentManager.Instance.Equip(item);
+            if (inventoryObservers.Contains(observer))
+            {
+                inventoryObservers.Remove(observer);
+            }
         }
-        else
+
+        private void NotifyObserversItemAdded(ItemSO item)
         {
-            Debug.LogError("Attempted to equip an item that is not equipable.");
+            foreach (var observer in inventoryObservers)
+            {
+                observer.OnItemAddedToInventory(item);
+            }
         }
-    }
-    public void ConsumeItem(ItemSO item)
-    {
-        if (item is ConsumableItemSO consumableItem)
+
+        private void NotifyObserversItemRemoved(ItemSO item)
         {
-            consumableItem.Consume(playerStats);  // Assuming Consume method modifies PlayerStats
-            RemoveItemFromInventory(item);  // Typically, you consume an item once used
-        }
-        else
-        {
-            Debug.LogError("Attempted to consume an item that is not consumable.");
-        }
-    }
-    public void UseKeyItem(ItemSO item)
-    {
-        if (item.Type == ItemSO.ItemType.KeyItem)
-        {
-            KeyItemManager.Instance.UseKeyItem(item);
-        }
-        else
-        {
-            Debug.LogError("Attempted to use a non-key item as a key.");
+            foreach (var observer in inventoryObservers)
+            {
+                observer.OnItemRemovedFromInventory(item);
+            }
         }
     }
 }
+
+

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    private BoxCollider damageCollider; // The BoxCollider component attached to the weapon
+    public BoxCollider damageCollider; // The BoxCollider component attached to the weapon
     [SerializeField] private WeaponstatsSO weaponStats; // Reference to a ScriptableObject that contains weapon stats
     public ParticleSystem trail; // Attached particle system to the weapon
     private List<Collider> hitObject = new List<Collider>(); // List to track hit objects during an attack

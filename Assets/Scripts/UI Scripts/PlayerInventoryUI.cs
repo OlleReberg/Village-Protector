@@ -1,48 +1,84 @@
-﻿using Item_Scripts;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Item_Scripts;
+using PlayerScripts;
 
 namespace UI_Scripts
 {
-    public class PlayerInventoryUI : MonoBehaviour
+    public class PlayerInventoryUI : MonoBehaviour, IInventoryObserver
     {
         public PlayerInventory playerInventory;
         private VisualElement rootElement;
+        private VisualElement inventoryGrid; // The container for inventory slots
+        [SerializeField] private InventoryUIManager uiManager;
+        private void Start()
+        {
+            SetUpUI();
+        }
 
-        void Start()
+        public void SetUpUI()
         {
             rootElement = GetComponent<UIDocument>().rootVisualElement;
-            SetupDragAndDrop();
+            uiManager.CreateInventorySlots(playerInventory, rootElement);
+            //rootElement.Clear();
+            playerInventory.AddObserver(this);
+           // UpdateUI(); // Initial UI setup
         }
 
-        private void SetupDragAndDrop()
+        public void OnItemAddedToInventory(ItemSO item)
         {
-            foreach (var itemVisual in rootElement.Query<VisualElement>().Where(e => e.userData is ItemSO).ToList())
-            {
-                var manipulator = new DragAndDropManipulator(itemVisual);
-                itemVisual.AddManipulator(manipulator);
-            }
+            UpdateUI();
         }
+
+        public void OnItemRemovedFromInventory(ItemSO item)
+        {
+            UpdateUI();
+        }
+
         public void UpdateUI()
         {
-            // Clear existing UI elements
             ClearInventoryDisplay();
-
-            // Create new UI elements based on PlayerInventory's items
             foreach (var item in playerInventory.playerInventory)
             {
                 CreateItemUI(item);
             }
         }
 
-        void ClearInventoryDisplay()
+        private void ClearInventoryDisplay()
         {
-            /* Implementation */
+            // Clear the existing UI elements in the grid
+            rootElement = GetComponent<UIDocument>().rootVisualElement;
+            //inventoryGrid = rootElement.Q<VisualElement>("inventoryGrid"); // Ensure this matches the name in your UXML
+            //inventoryGrid.Clear();
         }
 
-        void CreateItemUI(ItemSO item)
+        private void CreateItemUI(ItemSO item)
         {
-            /* Implementation */
+            // Create a new VisualElement for the item slot
+            var itemElement = new VisualElement();
+            itemElement.AddToClassList("inventory-slot");
+
+            // Set the item's icon
+            itemElement.style.backgroundImage = new StyleBackground(item.ItemIcon.texture);
+
+            // Create a label for the item quantity
+            var quantityLabel = new Label();
+            quantityLabel.text = item.Quantity > 1 ? "x" + item.Quantity.ToString() : "";
+            quantityLabel.AddToClassList("item-quantity");
+            itemElement.Add(quantityLabel);
+
+            // Add the item slot to the grid
+            inventoryGrid.Add(itemElement);
+        }
+
+        private void OnDestroy()
+        {
+            if (playerInventory != null)
+            {
+                playerInventory.RemoveObserver(this);
+            }
         }
     }
 }

@@ -1,112 +1,121 @@
 using Item_Scripts;
 using UnityEngine;
-using UnityEngine.VFX;
 
 public class WeaponSlotManager : MonoBehaviour
 {
-    private WeaponSlotHolder leftHandSlot;
-    private WeaponSlotHolder rightHandSlot;
+    public Transform rightHandSlot;
+    public Transform leftHandSlot;
+    public WeaponItem testWeaponItem; // For testing purposes
 
-    private Weapon leftHandDamageCollider;
-    private Weapon rightHandDamageCollider;
-    private Weapon weaponTrail;
-    // public VisualEffect slashVFX;
+    private Weapon currentRightHandWeapon;
+    private Weapon currentLeftHandWeapon;
 
-    private void Awake()
+    private void Start()
     {
-        // Get all WeaponSlotHolder components attached to this object or its children
-        WeaponSlotHolder[] weaponSlotHolders = GetComponentsInChildren<WeaponSlotHolder>();
-
-        // Loop through each WeaponSlotHolder to find left and right hand slots
-        foreach (WeaponSlotHolder weaponSlot in weaponSlotHolders)
+        // Check if this is a testing scenario
+        if (testWeaponItem != null)
         {
-            if (weaponSlot.isLeftHandSlot)
-            {
-                leftHandSlot = weaponSlot;
-            }
-            else if (weaponSlot.isRightHandSlot)
-            {
-                rightHandSlot = weaponSlot;
-            }
+            EquipWeapon(testWeaponItem, true); // Equip in the right hand for testing
         }
     }
 
-    public void LoadWeaponOnSlot(WeaponItem weaponItem, bool isLeft)
+    //Model instantiation handled via WeaponSlotHolder which is attached to player model hand
+    public void EquipWeapon(WeaponItem weaponItem, bool isRightHand)
     {
-        if (isLeft)
+        if (weaponItem == null)
         {
-            leftHandSlot.LoadWeaponModel(weaponItem); // Load the weapon model into the left hand slot
-            LoadLeftWeaponCollider(); // Load the left hand weapon's damage collider reference
+            Debug.LogError("WeaponSlotManager: No weapon item provided to equip.");
+            return;
         }
-        else
+
+        Transform slotTransform = isRightHand ? rightHandSlot : leftHandSlot;
+        WeaponSlotHolder slotHolder = slotTransform.GetComponent<WeaponSlotHolder>();
+
+        if (slotHolder != null)
         {
-            rightHandSlot.LoadWeaponModel(weaponItem); // Load the weapon model into the right hand slot
-            LoadRightWeaponCollider(); // Load the right hand weapon's damage collider reference
+            slotHolder.LoadWeaponModel(weaponItem);
+        }
+
+        // Additional logic here for setting up the weapon after it's visually equipped
+    }
+
+    public void UnequipWeapon(bool isRightHand)
+    {
+        Transform slotTransform = isRightHand ? rightHandSlot : leftHandSlot;
+        WeaponSlotHolder slotHolder = slotTransform.GetComponent<WeaponSlotHolder>();
+
+        if (slotHolder != null)
+        {
+            slotHolder.UnloadWeaponAndDestroy();
+        }
+
+        // Additional cleanup logic here
+    }
+
+    private void ClearSlot(Transform slotTransform)
+    {
+        foreach (Transform child in slotTransform)
+        {
+            Destroy(child.gameObject);
         }
     }
 
-    public void WeaponslashVFX()
+    public void SwapWeapons(WeaponItem newWeaponItem, bool isRightHand)
     {
-        // slashVFX.gameObject.SetActive(true);
-        // slashVFX.Play();
-    }
-    
-    #region Handle Weapon's Damage Collider
-    
-    public void LoadLeftWeaponCollider()
-    {
-        // Get the Weapon script component from the left hand weapon model's children
-        leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<Weapon>();
-        leftHandDamageCollider.EquipWeapon(gameObject);
+        UnequipWeapon(isRightHand);
+        EquipWeapon(newWeaponItem, isRightHand);
     }
 
-    public void LoadRightWeaponCollider()
+    private void InitializeWeapon(Weapon weapon)
     {
-        // Get the Weapon script component from the right hand weapon model's children
-        rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<Weapon>();
-        rightHandDamageCollider.EquipWeapon(gameObject);
+        if (weapon == null) return;
+
+        // Ensure the collider is disabled at start
+        weapon.DisableDamageCollider();
+
+        if (weapon.trail != null)
+        {
+            weapon.trail.Stop();
+        }
     }
 
-    public void OpenRightWeaponCollider()
+    public void EnableWeaponTrail(bool isRightHand)
     {
-        // Enable the damage collider of the right hand weapon
-        rightHandDamageCollider.EnableDamageCollider();
+        Weapon weapon = isRightHand ? currentRightHandWeapon : currentLeftHandWeapon;
+        if (weapon != null && weapon.trail != null)
+        {
+            weapon.trail.gameObject.SetActive(true);
+        }
     }
 
-    public void OpenLeftWeaponCollider()
+    public void DisableWeaponTrail(bool isRightHand)
     {
-        // Enable the damage collider of the left hand weapon
-        leftHandDamageCollider.EnableDamageCollider();
+        Weapon weapon = isRightHand ? currentRightHandWeapon : currentLeftHandWeapon;
+        if (weapon != null && weapon.trail != null)
+        {
+            weapon.trail.gameObject.SetActive(false);
+        }
     }
 
-    public void CloseRightWeaponCollider()
+    public void EnableWeaponCollider(bool isRightHand)
     {
-        // Disable the damage collider of the right hand weapon
-        rightHandDamageCollider.DisableDamageCollider();
+        Weapon weapon = isRightHand ? currentRightHandWeapon : currentLeftHandWeapon;
+        if (weapon != null)
+        {
+            weapon.EnableDamageCollider();
+        }
     }
 
-    public void CloseLeftWeaponCollider()
+    public void DisableWeaponCollider(bool isRightHand)
     {
-        // Disable the damage collider of the left hand weapon
-        leftHandDamageCollider.DisableDamageCollider();
+        Weapon weapon = isRightHand ? currentRightHandWeapon : currentLeftHandWeapon;
+        if (weapon != null)
+        {
+            weapon.DisableDamageCollider();
+        }
     }
-    
-    #endregion
-    
-    #region Handle Weapon trail
-
-    public void EnableWeaponTrail()
-    {
-        rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<Weapon>();
-        //Enable Weapon trail
-        rightHandDamageCollider.trail.gameObject.SetActive(true);
-    }
-
-    public void DisableWeaponTrail()
-    {
-        rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<Weapon>();
-        //Disable Weapon trail
-        rightHandDamageCollider.trail.gameObject.SetActive(false);
-    }
-    #endregion
 }
+
+
+
+
